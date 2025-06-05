@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\Apiario;
 use Illuminate\Http\Request;
 
-class UsuarioController extends Controller
+class ApiarioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,9 +32,9 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Display the specifieid resource.
+     * Display the specified resource.
      */
-    public function show(Usuario $usuario)
+    public function show(Apiario $apiario)
     {
         //
     }
@@ -42,7 +42,7 @@ class UsuarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Usuario $usuario)
+    public function edit(Apiario $apiario)
     {
         //
     }
@@ -50,7 +50,7 @@ class UsuarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, Apiario $apiario)
     {
         //
     }
@@ -58,7 +58,7 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(Apiario $apiario)
     {
         //
     }

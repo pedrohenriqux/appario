@@ -14,12 +14,11 @@ class EnderecoApiarioController extends Controller
      */
     public function index()
     {
-        //
+        $enderecosApiarios = EnderecoApiario::all();
+        return view(('enderecosApiarios'), compact('enderecosApiarios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
@@ -41,7 +40,7 @@ class EnderecoApiarioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(EnderecoApiario $enderecos_apiarios)
+    public function show(EnderecoApiario $enderecosApiarios)
     {
         //
     }
@@ -49,7 +48,7 @@ class EnderecoApiarioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(EnderecoApiario $enderecos_apiarios)
+    public function edit(EnderecoApiario $enderecosApiarios)
     {
         //
     }
@@ -57,20 +56,20 @@ class EnderecoApiarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRequest $request, EnderecoApiario $endereco)
+    public function update(UpdateRequest $request, EnderecoApiario $enderecoApiario)
     {
-        $endereco->update($request->validated());
+        $enderecoApiario->update($request->validated());
 
         return response()->json([
             'message' => 'Endereço do apiário atualizado com sucesso!',
-            'data' => $endereco
+            'data' => $enderecoApiario
         ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(EnderecoApiario $enderecos_apiarios)
+    public function destroy(EnderecoApiario $enderecosApiarios)
     {
         //
     }

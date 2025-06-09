@@ -11,7 +11,7 @@ use App\Http\Requests\Pessoa\UpdateRequest;
 class PessoaController extends Controller
 {
 
-    public function index(Request $request)
+    public function index()
     {
         $pessoas = Pessoa::all();
         return view(('pessoas.listar'), compact('pessoas'));

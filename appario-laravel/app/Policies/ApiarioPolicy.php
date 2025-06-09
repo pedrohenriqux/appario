@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Policies;
+
+use App\Models\Apiario;
+use App\Models\Usuario;
+use Illuminate\Auth\Access\Response;
+
+class ApiarioPolicy
+{
+   
+    public function viewAny(Usuario $usuario): bool
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can view the model.
+     */
+    public function view(User $user, Apiario $apiario): bool
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can create models.
+     */
+    public function create(Usuario $usuario): bool
+    {
+        return $usuario->pessoa &&
+           $usuario->pessoa->tipo === 'RESPONSAVEL' &&
+           $apiario->pessoa_id === $usuario->pessoa->id_pessoa; 
+    }
+
+    public function update(Usuario $usuario, Apiario $apiario): bool
+    {
+        return $usuario->pessoa &&
+           $usuario->pessoa->tipo === 'RESPONSAVEL' &&
+           $apiario->pessoa_id === $usuario->pessoa->id_pessoa; 
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function delete(User $user, Apiario $apiario): bool
+    {
+        return $usuario->pessoa &&
+           $usuario->pessoa->tipo === 'RESPONSAVEL' &&
+           $apiario->pessoa_id === $usuario->pessoa->id_pessoa; 
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     */
+    public function restore(Usuario $usuario, Apiario $apiario): bool
+    {
+        return false;
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDelete(Usuario $usuario, Apiario $apiario): bool
+    {
+        return false;
+    }
+}

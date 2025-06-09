@@ -57,4 +57,20 @@ class StoreRequest extends FormRequest
             'apiario_id' => 'required|integer|exists:apiarios,id_apiario',
         ];
     }
+
+    public function messages() 
+    {
+        return [
+            'logradouro.required' => 'O campo Logradouro é obrigatório.',
+            'logradouro.max' => 'O campo Logradouro não pode ter mais de :max caracteres.',
+            'numero.required' => 'O campo numero é obrigatório',
+            'numero.max' => 'O campo numero não pode ter mais de :max caracteres.',
+            'cep.required' => 'O campo CEP é obrigatório',
+            'cep.size' => 'O campo CEP deve ter exatamente 8 caracteres.',
+            'cidade.required' => 'O campo Cidade é obrigatório',
+            'cidade.max' => 'O campo Cidade não pode ter mais de :max caracteres.',
+            'estado.required' => 'O campo Estado é obrigatório.',
+            'estado.size' => 'O campo Estado deve ter exatamente 2 caracteres (sigla).',
+        ];
+    }
 }

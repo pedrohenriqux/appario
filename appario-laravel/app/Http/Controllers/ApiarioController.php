@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 
 class ApiarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        $apiarios = Apiario::all();
+        return view(('apiarios.listar'), compact('apiarios'));
     }
 
     /**
@@ -50,9 +49,14 @@ class ApiarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Apiario $apiario)
+    public function update(UpdateRequest $request, Apiario $apiario)
     {
-        //
+        $this->authorize('update', $apiario);
+        $apiario->update($request->validated());
+        return response()->json([
+            'mensagem' => 'Apiário atualizado com sucesso',
+            'data' => $apiario
+        ], 201);
     }
 
     /**

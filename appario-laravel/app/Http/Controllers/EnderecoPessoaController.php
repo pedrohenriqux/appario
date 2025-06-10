@@ -9,25 +9,18 @@ use App\Http\Requests\EnderecoPessoa\UpdateRequest;
 
 class EnderecoPessoaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        //
+        $enderecosPessoas = EnderecoPessoa::all();
+        return view('enderecosPessoas.listar', compact('enderecosPessoas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreRequest $request)
     {
         $enderecoPessoa = EnderecoPessoa::create($request->validated());

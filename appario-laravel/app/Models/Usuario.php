@@ -10,20 +10,18 @@ class Usuario extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $primaryKey = 'id_usuarios';
-    public $incrementing = true;
-    protected $keyType = 'int';
+    protected $primaryKey = 'id_usuario';
 
     // $fillable Atributos que podem ser preenchidos em massa (segurança contra mass assignment).
     protected $fillable = [
-        'name',
         'email',
-        'senha',
+        'password',
+        'tipo'
     ];
 
     // $hidden Atributos que devem ser ocultados ao serializar o modelo (para JSON/array).
     protected $hidden = [
-        'senha',
+        'password',
         'remember_token',
     ];
 
@@ -32,4 +30,9 @@ class Usuario extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function pessoa()
+    {
+        return $this->hasOne(Pessoa::class, 'usuario_id', 'id_usuario');
+    }
 }

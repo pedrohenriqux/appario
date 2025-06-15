@@ -10,45 +10,58 @@ class ApiarioController extends Controller
     
     public function index()
     {
-        $apiarios = Apiario::all();
+        $usuario = auth()->user();  
+        $pessoa = $usuario->pessoa;
+
+        if (!$pessoa) {
+            return response()->json(['mensagem' => 'Pessoa não encontrada para este usuário.'], 404);
+        }
+        $apiarios = Apiario::where('pessoa_id', $pessoa->id_pessoa)->get(); 
         return view(('apiarios.listar'), compact('apiarios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('apiarios.inserir');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    
+    public function store(StoreRequest $request)
     {
-        //
+        $usuario = auth()->user();
+        $pessoa = $usuario->pessoa;
+
+        if (!$pessoa) {
+            return response()->json([
+                'mensagem' => 'Pessoa não encontrada para este usuário.'
+            ], 404);
+        }
+
+        $data = $request->validated();
+        $data['pessoa_id'] = $pessoa->id_pessoa;
+        $apiario = new Apiario($data);
+        $this->authorize('create', $apiario);
+        $apiario->save();
+
+        return response()->json([
+            'mensagem' => 'Apiário criado com sucesso',
+            'data' => $apiario
+        ], 201);
+
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Apiario $apiario)
     {
-        //
+        $this->authorize('view', $apiario);
+        return response()->json($apiario);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Apiario $apiario)
     {
-        //
+        $this->authorize('update', $apiario);
+        return view('apiarios.editar', compact('apiario'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateRequest $request, Apiario $apiario)
     {
         $this->authorize('update', $apiario);
@@ -59,11 +72,13 @@ class ApiarioController extends Controller
         ], 201);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Apiario $apiario)
     {
-        //
+        $this->authorize('delete', $apiario);
+        $apiario->delete();
+
+        return response()->json([
+            'mensagem' => 'Apiário removido com sucesso.'
+        ]);
     }
 }

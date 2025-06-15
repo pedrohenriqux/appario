@@ -17,19 +17,23 @@ class ApiarioPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Apiario $apiario): bool
-    {
-        return false;
-    }
-
-    /**
-     * Determine whether the user can create models.
-     */
-    public function create(Usuario $usuario): bool
+    public function view(Usuario $usuario, Apiario $apiario): bool
     {
         return $usuario->pessoa &&
-           $usuario->pessoa->tipo === 'RESPONSAVEL' &&
-           $apiario->pessoa_id === $usuario->pessoa->id_pessoa; 
+           $apiario->pessoa_id === $usuario->pessoa->id_pessoa;
+    }
+
+    public function create(Usuario $usuario, Apiario $apiario): Response
+    {
+        if (
+        $usuario->pessoa &&
+        $usuario->pessoa->tipo === 'RESPONSAVEL' &&
+        $apiario->pessoa_id === $usuario->pessoa->id_pessoa
+        ) {
+            return Response::allow();
+        }
+
+        return Response::deny('Você não tem permissão para criar este apiário.');
     }
 
     public function update(Usuario $usuario, Apiario $apiario): bool
@@ -42,7 +46,7 @@ class ApiarioPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Apiario $apiario): bool
+    public function delete(Usuario $usuario, Apiario $apiario): bool
     {
         return $usuario->pessoa &&
            $usuario->pessoa->tipo === 'RESPONSAVEL' &&

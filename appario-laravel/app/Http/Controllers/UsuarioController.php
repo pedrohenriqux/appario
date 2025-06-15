@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use App\Http\Requests\Usuario\StoreRequest;
+use App\Http\Requests\Usuario\UpdateRequest;
 
 class UsuarioController extends Controller
 {
@@ -17,19 +19,29 @@ class UsuarioController extends Controller
 
     public function create()
     {
-        //
+        return view('usuarios.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+
+    public function store(StoreRequest $request)
     {
-        $usuarios = Usuario::create($request->all());
-        return response()->json([
-            'message' => 'Usuário cadastrado com sucesso!',
-            'data' => $usuarios
-        ], 201);
+        $dados = $request->validated();
+
+        $usuario = Usuario::create([
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'tipo' => 'PESSOA'
+        ]);
+
+         // Cria a pessoa associada
+        $usuario->pessoa()->create([
+            'nome' => $dados['nome'],
+            'sobrenome' => $dados['sobrenome'],
+            'cpf' => $dados['cpf'],
+            'tipo' => $request->tipo,
+        ]);
+
+        return redirect()->route('home')->with('success', 'Usuário e pessoa cadastrados com sucesso!');
     }
 
     /**
@@ -48,7 +60,7 @@ class UsuarioController extends Controller
         //
     }
 
-    public function update(Request $request, Usuario $usuario)
+    public function update(UpdateRequest $request, Usuario $usuario)
     {
         $usuario->update($request->validate());
 

@@ -17,8 +17,7 @@ class UpdateRequest extends FormRequest
         return [
             'area' => 'sometimes|numeric|max:50',
             'data_criacao' => 'sometimes|date',
-            'coordenadas' => 'sometimes|string|max:70',
-            'pessoa_id' => 'sometimes|exists:pessoas,id_pessoa',
+            'coordenadas' => 'sometimes|string|max:70'
         ];
     }
 }

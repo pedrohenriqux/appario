@@ -17,8 +17,7 @@ class StoreRequest extends FormRequest
         return [
             'area' => 'required|numeric|max:50',
             'data_criacao' => 'required|date',
-            'coordenadas' => 'required|string|max:70',
-            'pessoa_id' => 'required|exists:pessoas,id_pessoa',
+            'coordenadas' => 'required|string|max:70'
         ];
     }
 

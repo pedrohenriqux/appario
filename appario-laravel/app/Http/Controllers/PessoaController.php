@@ -17,14 +17,35 @@ class PessoaController extends Controller
         return view(('pessoas.listar'), compact('pessoas'));
     }
 
+    public function create()
+    {
+        $usuario_id = session('usuario_id');
+
+        if (!$usuario_id) {
+            return redirect()->route('usuarios.create')->with(
+                'error', 'É necessário cadastrar um usuário primeiro.'
+            );
+        }
+        return view('pessoas.inserir', compact('usuario_id'));
+    }
+
     public function store(StoreRequest $request)
     {
-        $pessoa = Pessoa::create($request->validated());
+        $request->merge([
+            'usuario_id' => session('usuario_id')
+        ]);
+        
+        $dados = $request->validated();
 
-        return response()->json([
-            'message' => 'Pessoa cadastrada com sucesso!',
-            'data' => $pessoa
-        ], 201);
+        Pessoa::create($dados);
+
+        // Limpa a sessão após o uso
+        session()->forget('usuario_id');
+
+        return redirect()->route('home')->with(
+            'success', 'Cadastro concluído com sucesso!'
+        );
+
     }
 
     public function update(UpdateRequest $request, Pessoa $pessoa)

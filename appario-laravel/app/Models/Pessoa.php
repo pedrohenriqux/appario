@@ -24,7 +24,7 @@ class Pessoa extends Model
     // Relação com usuário
     public function usuario(): BelongsTo
     {
-        return $this->belongsTo(Usuario::class, 'usuario_id', 'id_usuarios');
+        return $this->belongsTo(Usuario::class, 'usuario_id', 'id_usuario');
     }
 
     // Relação com endereços (1:N)

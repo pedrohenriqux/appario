@@ -7,12 +7,11 @@ use Illuminate\Http\Request;
 
 class AdministradorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $administradores = Administrador::all();
+        return view('administradores.listar', compact('administradores'));
     }
 
     /**

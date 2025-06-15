@@ -24,7 +24,7 @@ class UpdateRequest extends FormRequest
                 Rule::unique('pessoas', 'cpf')->ignore($this->route('pessoa'), 'id_pessoa')
             ],
             'tipo' => ['sometimes', Rule::in(['APICULTOR', 'RESPONSAVEL'])],
-            'usuario_id' => 'sometimes|exists:usuarios,id_usuarios',
+            //'usuario_id' => 'sometimes|exists:usuarios,id_usuarios',
         ];
     }
 }

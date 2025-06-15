@@ -90,9 +90,35 @@
             <h1 class="navbar-title m-0">CADASTRO</h1>
         </div>
     </nav>
-    <form method="POST" action="{{ route('pessoas.inserir') }}" class="w-100 px-3 px-sm-5">
+
+    <form method="POST" action="{{ route('usuarios.store') }}" class="w-100 px-3 px-sm-5">
         @csrf
-        <h1>Insira suas informaçoes de usuario</h1>
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <h3>Cadastro de Usuário</h3>
+        <div>
+            <label for="Email">Seu Email</label>
+            <input type="email" name="email" required>
+        </div>
+        <div>
+            <label for="Password">Seu Senha</label>
+            <input type="password" name="password" required>
+        </div>
+        <div>
+            <label for="password_confirmation">Confirme sua senha</label>
+            <input type="password" name="password_confirmation" required>
+        </div>
+
+        <h3>Cadastro de Pessoa</h3>
         <div>
             <label for="Nome">Seu Nome</label>
             <input type="text" name="nome" />
@@ -103,18 +129,18 @@
         </div>
         <div>
             <label for="CPF">Seu CPF</label>
-            <input type="text" name="cpf" />
+            <input type="text" name="cpf" maxlength="11"/>
         </div>
         
         <div>
             <label for="Tipo">Função</label>
             <select name="tipo" required>
                 <option value="">Selecione...</option>
-                <option value="apicultor">APICULTOR</option>
-                <option value="responsavel">RESPONSAVEL</option>
+                <option value="APICULTOR">APICULTOR</option>
+                <option value="RESPONSAVEL">RESPONSAVEL</option>
             </select>
         </div>
-        <input type="hidden" name="usuario_id" value="{{ $usuario_id }}"> 
+
         <button type="submit" class="button">Cadastrar</button>
     </form>
   </body>

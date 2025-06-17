@@ -7,17 +7,14 @@ use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
-        //
+        $usuarios = Usuario::all();
+        return view('usuarios.listar', compact('usuarios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
@@ -28,11 +25,15 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuarios = Usuario::create($request->all());
+        return response()->json([
+            'message' => 'Usuário cadastrado com sucesso!',
+            'data' => $usuarios
+        ], 201);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specifieid resource.
      */
     public function show(Usuario $usuario)
     {
@@ -47,12 +48,14 @@ class UsuarioController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Usuario $usuario)
     {
-        //
+        $usuario->update($request->validate());
+
+        return response()->json([
+            'message' => 'Usuário atualizado com sucesso!',
+            'data' => $usuario
+        ]);
     }
 
     /**

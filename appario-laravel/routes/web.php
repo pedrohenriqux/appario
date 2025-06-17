@@ -6,11 +6,14 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Auth\AuthController;
 
 
-Route::get('/login', function () {
-    return view('login.login'); // ou 'auth.login' dependendo do seu caminho
-})->name('login.form');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+//Route::get('/login', function () {
+//    return view('login.login'); // ou 'auth.login' dependendo do seu caminho
+//})->name('login.form');
+//Route::post('/login', [AuthController::class, 'login'])->name('login');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 Route::get('/home', fn() => view('home'))->name('home');
 
@@ -29,3 +32,5 @@ Route::delete('/pessoas/{pessoa}', [PessoaController::class, 'destroy'])->name('
 Route::get('/pessoas/create', [PessoaController::class, 'create'])->name('pessoas.create');
 Route::get('/pessoas/{pessoa}/edit', [PessoaController::class, 'edit'])->name('pessoas.edit');
 Route::get('/pessoas/{pessoa}/delete', [PessoaController::class, 'delete'])->name('pessoas.delete');
+
+

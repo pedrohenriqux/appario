@@ -30,7 +30,7 @@
     }
     body {
         background-color: #f2f2f2;
-        background-image: url('background.jpg');
+        background-image: url("{{ asset('img/AppArio-fundo-colméia.png') }}");
         background-repeat: no-repeat; /* Prevents the image from repeating */
         background-size: cover; /* Ensures the image covers the entire element */
         background-position: center; 
@@ -55,7 +55,7 @@
         font-weight: bold;
     }
 
-    input[type="text"],
+    input,
     select {
         width: 100%;
         padding: 10px;
@@ -86,7 +86,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container-fluid">
-            <img src="logo.jpg" alt="Logo" width="60" height="60" class="d-inline-block align-text-top me-2">
+            <img src="{{ asset('img/AppÁrio logo.png') }}" alt="Logo Appário" width="60" height="60" class="d-inline-block align-text-top me-2">
             <h1 class="navbar-title m-0">CADASTRO</h1>
         </div>
     </nav>

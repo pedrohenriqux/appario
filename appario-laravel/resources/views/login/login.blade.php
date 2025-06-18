@@ -88,7 +88,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container-fluid">
-                <img src="logo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top me-2">
+               <img src="{{ asset('img/AppÁrio logo.png') }}" alt="Logo Appário" />
                 <span class="text-white fw-bold">Login</span>
             </div>
         </nav>

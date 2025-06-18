@@ -41,7 +41,7 @@ class UsuarioController extends Controller
             'tipo' => $request->tipo,
         ]);
 
-        return redirect()->route('home')->with('success', 'Usuário e pessoa cadastrados com sucesso!');
+        return redirect()->route('dashboard')->with('success', 'Usuário e pessoa cadastrados com sucesso!');
     }
 
     /**

@@ -154,7 +154,7 @@
   <!-- Cabeçalho -->
   <header>
     <div class="logo-container">
-      <img src="{{ asset('img/AppArio logo.png') }}" alt="Logo Appário" />
+      <img src="{{ asset('img/appAriologo.png') }}" alt="Logo Appário" />
     </div>
     <nav class="nav-menu">
       <a href="{{ url('/') }}">HOME</a>
@@ -188,7 +188,7 @@
   </div>
 
   <!-- Fundo decorativo -->
-  <img class="hex-background" src="{{ asset('img/AppÁrio fundo colméia.png') }}" alt="Fundo Hexágonos" />
+  <img class="hex-background" src="{{ asset('img/backgroundImg.png') }}" alt="Fundo Hexágonos" />
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

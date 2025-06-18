@@ -13,7 +13,7 @@
         </head>
 
         <style>
-                * {
+            * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
@@ -61,7 +61,7 @@
                 border-radius: 5px;
                 border: 1px solid #ccc;
                 transition: border-color 0.3s;
-                }
+            }
 
             form input:focus {
                 border-color: #ff7a00;
@@ -88,7 +88,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container-fluid">
-               <img src="{{ asset('img/AppÁrio logo.png') }}" alt="Logo Appário" />
+                <img src="{{ asset('img/AppArio logo.png') }}" alt="Logo Appário" width="60" height="60" class="d-inline-block align-text-top me-2">
                 <span class="text-white fw-bold">Login</span>
             </div>
         </nav>

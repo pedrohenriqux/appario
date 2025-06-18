@@ -17,7 +17,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credenciais)) {
             $request->session()->regenerate();
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('dashboard'));
         } else {
             return redirect()->back()->with([
                 'erro'  => 'Email ou senha inválida.'

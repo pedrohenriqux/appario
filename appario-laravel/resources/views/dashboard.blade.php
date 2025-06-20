@@ -9,8 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet" />
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
   <style>
     * {
@@ -20,46 +18,43 @@
     html, body {
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
       font-family: 'Montserrat', sans-serif;
       background-color: #fff;
       min-height: 100vh;
-      position: relative;
+      overflow-x: hidden;
     }
 
     header {
       background-color: #f8b400;
-      padding: 0.6rem 1rem;
       width: 100%;
-    }
-
-    .logo-menu {
+      padding: 1rem 2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem;
-      max-width: 100%;
     }
 
-    .logo-menu img {
-      height: 30px;
+    .logo-container {
+      flex-shrink: 0;
+    }
+
+    .logo-container img {
+      height: 45px;
       width: auto;
+      object-fit: contain;
     }
 
     .nav-menu {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
+      gap: 2rem;
       align-items: center;
-      flex: 1;
+      justify-content: center;
+      flex-grow: 1;
     }
 
     .nav-menu a {
       color: white;
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 2rem;
       font-weight: 600;
     }
 
@@ -73,21 +68,20 @@
       right: 0;
       width: 100%;
       max-width: 500px;
-      height: auto;
       opacity: 0.15;
       z-index: 0;
       pointer-events: none;
     }
 
     .dashboard-container {
+      position: relative;
+      z-index: 1;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       padding: 2rem;
       max-width: 1200px;
       margin: 0 auto;
-      position: relative;
-      z-index: 1;
     }
 
     .dashboard-card {
@@ -125,7 +119,7 @@
       object-fit: contain;
     }
 
-    /* Responsividade */
+    /* Telas grandes */
     @media (min-width: 1200px) {
       .dashboard-container {
         grid-template-columns: repeat(2, 1fr);
@@ -144,7 +138,27 @@
       }
     }
 
-    @media (max-width: 576px) {
+    /* Responsividade para celulares */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 0.5rem;
+      }
+
+      .logo-container img {
+        height: 30px;
+      }
+
+      .nav-menu {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .nav-menu a {
+        font-size: 0.9rem;
+      }
+
       .dashboard-container {
         padding: 1rem;
         gap: 1rem;
@@ -163,19 +177,6 @@
       .dashboard-card img {
         max-width: 60px;
       }
-
-      .nav-menu {
-        justify-content: center;
-        gap: 0.6rem;
-      }
-
-      .nav-menu a {
-        font-size: 0.85rem;
-      }
-
-      .logo-menu img {
-        height: 24px;
-      }
     }
   </style>
 </head>
@@ -183,15 +184,15 @@
 
   <!-- Cabeçalho -->
   <header>
-    <div class="logo-menu">
+    <div class="logo-container">
       <img src="{{ asset('img/appAriologo.png') }}" alt="Logo Appário" />
-      <nav class="nav-menu">
-        <a href="{{ url('/') }}">HOME</a>
-        <a href="{{ route('apiarios.index') }}">APIÁRIO</a>
-        <a href="{{ route('colmeia.index') }}">COLMEIA</a>
-        <a href="{{ route('inspecao.index') }}">INSPEÇÃO</a>
-      </nav>
     </div>
+    <nav class="nav-menu">
+      <a href="{{ url('/') }}">HOME</a>
+      <a href="{{ route('apiarios.index') }}">APIÁRIO</a>
+      <a href="{{ route('colmeia.index') }}">COLMEIA</a>
+      <a href="{{ route('inspecao.index') }}">INSPEÇÃO</a>
+    </nav>
   </header>
 
   <!-- Dashboard Cards -->

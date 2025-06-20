@@ -24,41 +24,42 @@
       font-family: 'Montserrat', sans-serif;
       background-color: #fff;
       min-height: 100vh;
+      position: relative;
     }
 
     header {
       background-color: #f8b400;
-      padding: 1rem 3rem;
-      color: white;
-      font-weight: 600;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
+      padding: 0.6rem 1rem;
+      width: 100%;
+    }
+
+    .logo-menu {
+      display: flex;
       align-items: center;
-      width: 100vw;
-    }
-
-    .logo-container {
-      justify-self: start;
-    }
-
-    .logo-container img {
-      height: 50px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
       max-width: 100%;
+    }
+
+    .logo-menu img {
+      height: 30px;
       width: auto;
     }
 
     .nav-menu {
-      justify-self: center;
       display: flex;
-      gap: 2rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
       align-items: center;
-      flex-wrap: nowrap;
+      flex: 1;
     }
 
     .nav-menu a {
       color: white;
       text-decoration: none;
-      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-size: 0.95rem;
       font-weight: 600;
     }
 
@@ -67,7 +68,7 @@
     }
 
     .hex-background {
-       position: absolute;
+      position: absolute;
       bottom: 0;
       right: 0;
       width: 100%;
@@ -85,6 +86,8 @@
       padding: 2rem;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     .dashboard-card {
@@ -122,7 +125,7 @@
       object-fit: contain;
     }
 
-    /* Grandes telas */
+    /* Responsividade */
     @media (min-width: 1200px) {
       .dashboard-container {
         grid-template-columns: repeat(2, 1fr);
@@ -141,45 +144,7 @@
       }
     }
 
-    /* Tablets */
-    @media (max-width: 768px) {
-      header {
-        padding: 0.8rem 1rem;
-      }
-
-      .logo-container img {
-        height: 30px;
-      }
-
-      .nav-menu {
-        flex-wrap: nowrap;
-        justify-content: center;
-        gap: 1rem;
-      }
-
-      .nav-menu a {
-        font-size: 1.1rem;
-      }
-    }
-
-    /* Celulares pequenos */
     @media (max-width: 576px) {
-      header {
-        padding: 0.6rem 0.8rem;
-      }
-
-      .logo-container img {
-        height: 20px;
-      }
-
-      .nav-menu {
-        gap: 0.8rem;
-      }
-
-      .nav-menu a {
-        font-size: 0.9rem;
-      }
-
       .dashboard-container {
         padding: 1rem;
         gap: 1rem;
@@ -198,6 +163,19 @@
       .dashboard-card img {
         max-width: 60px;
       }
+
+      .nav-menu {
+        justify-content: center;
+        gap: 0.6rem;
+      }
+
+      .nav-menu a {
+        font-size: 0.85rem;
+      }
+
+      .logo-menu img {
+        height: 24px;
+      }
     }
   </style>
 </head>
@@ -205,15 +183,15 @@
 
   <!-- Cabeçalho -->
   <header>
-    <div class="logo-container">
+    <div class="logo-menu">
       <img src="{{ asset('img/appAriologo.png') }}" alt="Logo Appário" />
+      <nav class="nav-menu">
+        <a href="{{ url('/') }}">HOME</a>
+        <a href="{{ route('apiarios.index') }}">APIÁRIO</a>
+        <a href="{{ route('colmeia.index') }}">COLMEIA</a>
+        <a href="{{ route('inspecao.index') }}">INSPEÇÃO</a>
+      </nav>
     </div>
-    <nav class="nav-menu">
-      <a href="{{ url('/') }}">HOME</a>
-      <a href="{{ route('apiarios.index') }}">APIÁRIO</a>
-      <a href="{{ route('colmeia.index') }}">COLMEIA</a>
-      <a href="{{ route('inspecao.index') }}">INSPEÇÃO</a>
-    </nav>
   </header>
 
   <!-- Dashboard Cards -->

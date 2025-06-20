@@ -28,19 +28,21 @@
         font-weight: bold;
         flex-grow: 1;
     }
+
     body {
-        background-color: #f2f2f2;
-        background-image: url("{{ asset('img/AppArio-fundo-colméia.png') }}");
-        background-repeat: no-repeat; /* Prevents the image from repeating */
-        background-size: cover; /* Ensures the image covers the entire element */
+        background-color:rgb(242, 242, 242);
+        background-image: url('{{ asset("img/AppArio-fundo-colmeia.png") }}');
+        background-repeat: no-repeat; 
+        background-size: cover; /
         background-position: center; 
         height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-     }
+    }
+
     form {
-        background-color: #ffffff;
+        background-color:rgb(255, 255, 255);
         padding: 25px;
         border-radius: 10px;
         max-width: 400px;
@@ -86,7 +88,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container-fluid">
-            <img src="{{ asset('img/AppÁrio logo.png') }}" alt="Logo Appário" width="60" height="60" class="d-inline-block align-text-top me-2">
+            <img src="{{ asset('img/AppArio logo.png') }}" alt="Logo Appário" width="60" height="60" class="d-inline-block align-text-top me-2">
             <h1 class="navbar-title m-0">CADASTRO</h1>
         </div>
     </nav>

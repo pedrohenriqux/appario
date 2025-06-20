@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard - Appário</title>
 
-  
-
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet" />
 
@@ -156,41 +154,41 @@
   <!-- Cabeçalho -->
   <header>
     <div class="logo-container">
-      <img src="{{ asset('img/AppÁrio logo.png') }}" alt="Logo Appário" />
+      <img src="{{ asset('img/appAriologo.png') }}" alt="Logo Appário" />
     </div>
     <nav class="nav-menu">
       <a href="{{ url('/') }}">HOME</a>
-      <a href="{{ url('/apiario') }}">APIÁRIO</a>
-      <a href="{{ url('/colmeia') }}">COLMEIA</a>
-      <a href="{{ url('/inspecao') }}">INSPEÇÃO</a>
+      <a href="{{ route('apiarios.index') }}">APIÁRIO</a>
+      <a href="{{ route('colmeia.index') }}">COLMEIA</a>
+      <a href="{{ route('inspecao.index') }}">INSPEÇÃO</a>
     </nav>
   </header>
 
   <!-- Dashboard Cards -->
   <div class="dashboard-container">
-    <a href="{{ url('/colmeia') }}" class="dashboard-card">
+    <a href="{{ route('colmeia.index')  }}" class="dashboard-card">
       <h2>COLMEIAS</h2>
       <img src="{{ asset('img/favosDemel.png') }}" alt="Colmeias" />
     </a>
 
-    <a href="{{ url('/apiario') }}" class="dashboard-card">
+    <a href="{{ route('apiarios.index') }}" class="dashboard-card">
       <h2>APIÁRIOS</h2>
       <img src="{{ asset('img/apiarioPng.png') }}" alt="Apiários" />
     </a>
 
-    <a href="{{ url('/inspecao') }}" class="dashboard-card">
+    <a href="{{ route('inspecao.index') }}" class="dashboard-card">
       <h2>INSPEÇÕES</h2>
       <img src="{{ asset('img/favosPng.png') }}" alt="Inspeções" />
     </a>
 
-    <a href="{{ url('/apicultor') }}" class="dashboard-card">
+    <a href="{{ route('apicultor.index') }}" class="dashboard-card">
       <h2>APICULTOR</h2>
       <img src="{{ asset('img/apicultorPng.png') }}" alt="Apicultor" />
     </a>
   </div>
 
   <!-- Fundo decorativo -->
-  <img class="hex-background" src="{{ asset('img/AppÁrio fundo colméia.png') }}" alt="Fundo Hexágonos" />
+  <img class="hex-background" src="{{ asset('img/backgroundImg.png') }}" alt="Fundo Hexágonos" />
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

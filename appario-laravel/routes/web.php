@@ -5,12 +5,26 @@ use App\Http\Controllers\PessoaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ApiarioController;
 use App\Http\Controllers\Auth\AuthController;
-
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 Route::get('/login', function () {
     return view('usuarios.login');
 })->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+
+// Tela para inserir o e-mail e solicitar o link
+Route::get('/esqueci-senha', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('usuarios.solicitarSenha');
+
+// Processa o envio do link por e-mail
+Route::post('/esqueci-senha', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('usuarios.email');
+
+// Tela para redefinir a senha com token
+Route::get('/redefinir-senha/{token}', [ResetPasswordController::class, 'showResetForm'])->name('usuarios.resetar');
+
+// Processa a redefinição de senha
+Route::post('/redefinir-senha', [ResetPasswordController::class, 'reset'])->name('usuarios.atualizar');
+
 
 Route::get('/home', fn() => view('home'))->name('home');
 

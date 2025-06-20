@@ -108,6 +108,10 @@
                     <div style="color:red;">{{ $message }}</div>
                 @enderror
 
+                <div style="text-align:center; margin-top: 10px;">
+                    <a href="{{ route('usuarios.solicitarSenha') }}">Esqueceu a senha?</a>
+                </div>
+
                 <button type="submit">Entrar</button>
             </form>
         </div>

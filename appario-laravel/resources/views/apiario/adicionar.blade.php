@@ -193,7 +193,7 @@
 
       <!-- Logradouro -->
       <div class="mb-3">
-        <label for="logradouro" class="form-label">Logradouro</label>
+        <label for="logradouro" class="form-label">Logradouro(Sítio,Bairro,etc.)</label>
         <input type="text" class="form-control" id="logradouro" name="logradouro" required />
       </div>
       

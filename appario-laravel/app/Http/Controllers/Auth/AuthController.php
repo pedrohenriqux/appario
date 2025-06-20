@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class AuthController extends Controller
 {
@@ -15,14 +16,24 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credenciais)) {
-            $request->session()->regenerate();
-            return redirect()->intended(route('dashboard'));
-        } else {
-            return redirect()->back()->with([
-                'erro'  => 'Email ou senha inválida.'
-            ])->onlyInput('email');
-        }
-        
+        try {
+            if (Auth::attempt($credenciais)) {
+                $request->session()->regenerate();
+                return redirect()->intended(route('dashboard'));
+            }
+            return back()->withErrors(['email' => 'Credenciais inválidas.'])->withInput(); 
+        } catch (\Throwable $th) {
+            return back()->withErrors(['erro'  => 'Erro no login: ' . $e->getMessage()]);
+            
+        }        
+    }
+
+    public function logout (Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('login.form');
     }
 }

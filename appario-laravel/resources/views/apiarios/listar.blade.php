@@ -99,12 +99,12 @@
     @foreach($apiarios as $apiario)
       <div class="apiario-card">
         <div class="apiario-info">
-          <div class="apiario-nome">Apiário {{ $apiario->id }}</div>
-          <div class="apiario-local">{{ $apiario->nome_local }}</div>
+            <div class="apiario-nome">Apiário {{ $apiario->id_apiario }}</div>
+            <div class="apiario-local">{{ $apiario->nome }}</div>
         </div>
         <div class="apiario-tipo">
-          {{ ucfirst($apiario->tipo) }}<br>
-          Colmeias: {{ $apiario->colmeias_count ?? 0 }}
+            {{ $apiario->enderecos->cidade ?? 'Sem cidade' }}<br>
+            Colmeias: 0 {{-- futuro campo para quando existir colmeias --}}
         </div>
       </div>
     @endforeach

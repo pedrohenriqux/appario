@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('pessoas', PessoaController::class);
     Route::get('/pessoas/{pessoa}/delete', [PessoaController::class, 'delete'])->name('pessoas.delete');
 
-    Route::resource('apiarios', ApiarioController::class);
+    
 
     Route::get('/colmeia', function () {
         return 'Página de colmeias em construção.';
@@ -56,8 +56,8 @@ Route::middleware(['auth'])->group(function () {
         return 'Página de apicultores em construção.';
     })->name('apicultor.index');
 
-    Route::get('/apiarios', [\App\Http\Controllers\ApiarioController::class, 'index'])->name('apiarios.index');
     Route::get('/apiarios/adicionar', [ApiarioController::class, 'create'])->name('apiarios.adicionar');
+    Route::resource('apiarios', ApiarioController::class);
 
 });
 

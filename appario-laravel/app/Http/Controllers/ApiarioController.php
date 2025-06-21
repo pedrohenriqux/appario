@@ -26,14 +26,18 @@ class ApiarioController extends Controller
                 ->with('error', 'Pessoa não encontrada para este usuário.');
         }
 
-        $apiarios = Apiario::where('pessoa_id', $pessoa->id_pessoa)->get(); 
+            // Aqui carregamos endereço e contagem de colmeias
+        $apiarios = Apiario::with('enderecos')
+            ->where('pessoa_id', $pessoa->id_pessoa)
+            ->get();
+
         return view('apiarios.listar', compact('apiarios'));
     }
 
     public function create()
     {
         $ufs = (new StoreRequest())->ufs();
-        return view('apiario.adicionar', compact('ufs'));
+        return view('apiarios.adicionar', compact('ufs'));
     }
 
     public function store(StoreRequest $request)
@@ -90,6 +94,7 @@ class ApiarioController extends Controller
 
     public function show(Apiario $apiario)
     {
+        dd($apiario);
         $this->authorize('view', $apiario);
 
         // Para view web, você pode retornar uma view aqui, 

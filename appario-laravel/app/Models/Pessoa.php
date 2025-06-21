@@ -26,6 +26,12 @@ class Pessoa extends Model
     {
         return $this->belongsTo(Usuario::class, 'usuario_id', 'id_usuario');
     }
+    
+        // Relação com pessoa (1:N)
+    public function apiarios()
+    {
+        return $this->hasMany(Apiario::class, 'pessoa_id', 'id_pessoa')->chaperone();
+    }
 
     // Relação com endereços (1:N)
     public function enderecos()

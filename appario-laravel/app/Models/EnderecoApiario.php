@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class EnderecoApiario extends Model
 {
     protected $table = 'enderecos_apiarios';
+    protected $primaryKey = 'id_endereco';
 
     protected $fillable = [
         'logradouro',
@@ -17,7 +18,7 @@ class EnderecoApiario extends Model
         'cep',
         'cidade',
         'estado',
-        'pessoa_id'
+        'apiario_id'
     ];
 
     public function apiario(): BelongsTo

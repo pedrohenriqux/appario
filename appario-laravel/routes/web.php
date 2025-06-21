@@ -22,7 +22,7 @@ Route::post('/esqueci-senha', [ForgotPasswordController::class, 'sendResetLinkEm
 // Tela para redefinir a senha com token
 Route::get('/redefinir-senha/{token}', [ResetPasswordController::class, 'showResetForm'])->name('usuarios.resetar');
 
-// Processa a redefinição de senha
+// Processa a redefinição de senha 
 Route::post('/redefinir-senha', [ResetPasswordController::class, 'reset'])->name('usuarios.atualizar');
 
 

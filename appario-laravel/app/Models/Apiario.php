@@ -5,13 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Apiario extends Model
-{
+{   
+    protected $primaryKey = 'id_apiario';
+    public $incrementing = true;
+    protected $keyType = 'int';
+
 
     protected $fillable = [
         'area',
         'coordenadas',
         'data_criacao',
-        'id_apiario',
+        'nome',
+        'pessoa_id',
     ];
 
     // Relação com pessoa (1:N)
@@ -23,6 +28,6 @@ class Apiario extends Model
     // Relação com endereços (1:N)
     public function enderecos()
     {
-        return $this->hasMany(EnderecoApiario::class, 'apiario_id', 'id_apiario');
+        return $this->hasOne(EnderecoApiario::class, 'apiario_id', 'id_apiario');
     }
 }

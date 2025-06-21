@@ -140,7 +140,7 @@
   </header>
 
   <div class="form-wrapper">
-    <form method="POST" action="{{ route('apiarios.inserir') }}">
+    <form method="POST" action="{{ route('apiarios.store') }}">
       @csrf
       <h1 class="text-center mb-4">Informe os dados do Apiário</h1>
 

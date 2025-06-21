@@ -1,78 +1,28 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dashboard - Appário</title>
+@extends('layouts.app')
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet" />
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+@section('title', 'Dashboard - Appário')
+
+@section('content')
+  <div class="dashboard-container">
+    <a href="{{ route('colmeia.index') }}" class="dashboard-card">
+      <h2>COLMEIAS</h2>
+      <img src="{{ asset('img/favosDemel.png') }}" alt="Colmeias" />
+    </a>
+    <a href="{{ route('apiarios.index') }}" class="dashboard-card">
+      <h2>APIÁRIOS</h2>
+      <img src="{{ asset('img/apiarioPng.png') }}" alt="Apiários" />
+    </a>
+    <a href="{{ route('inspecao.index') }}" class="dashboard-card">
+      <h2>INSPEÇÕES</h2>
+      <img src="{{ asset('img/favosPng.png') }}" alt="Inspeções" />
+    </a>
+    <a href="{{ route('apicultor.index') }}" class="dashboard-card">
+      <h2>APICULTOR</h2>
+      <img src="{{ asset('img/apicultorPng.png') }}" alt="Apicultor" />
+    </a>
+  </div>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #fff;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    header {
-      background-color: #f8b400;
-      width: 100%;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo-container {
-      flex-shrink: 0;
-    }
-
-    .logo-container img {
-      height: 45px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      justify-content: center;
-      flex-grow: 1;
-    }
-
-    .nav-menu a {
-      color: white;
-      text-decoration: none;
-      font-size: 2rem;
-      font-weight: 600;
-    }
-
-    .nav-menu a:hover {
-      text-decoration: underline;
-    }
-
-    .hex-background {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 100%;
-      max-width: 500px;
-      opacity: 0.15;
-      z-index: 0;
-      pointer-events: none;
-    }
-
     .dashboard-container {
       position: relative;
       z-index: 1;
@@ -119,7 +69,6 @@
       object-fit: contain;
     }
 
-    /* Telas grandes */
     @media (min-width: 1200px) {
       .dashboard-container {
         grid-template-columns: repeat(2, 1fr);
@@ -138,27 +87,7 @@
       }
     }
 
-    /* Responsividade para celulares */
     @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        padding: 1rem;
-        gap: 0.5rem;
-      }
-
-      .logo-container img {
-        height: 30px;
-      }
-
-      .nav-menu {
-        flex-wrap: wrap;
-        gap: 1rem;
-      }
-
-      .nav-menu a {
-        font-size: 0.9rem;
-      }
-
       .dashboard-container {
         padding: 1rem;
         gap: 1rem;
@@ -179,46 +108,4 @@
       }
     }
   </style>
-</head>
-<body>
-
-  <!-- Cabeçalho -->
-  <header>
-    <div class="logo-container">
-      <img src="{{ asset('img/appAriologo.png') }}" alt="Logo Appário" />
-    </div>
-    <nav class="nav-menu">
-      <a href="{{ url('/') }}">HOME</a>
-      <a href="{{ route('apiarios.index') }}">APIÁRIO</a>
-      <a href="{{ route('colmeia.index') }}">COLMEIA</a>
-      <a href="{{ route('inspecao.index') }}">INSPEÇÃO</a>
-    </nav>
-  </header>
-
-  <!-- Dashboard Cards -->
-  <div class="dashboard-container">
-    <a href="{{ route('colmeia.index') }}" class="dashboard-card">
-      <h2>COLMEIAS</h2>
-      <img src="{{ asset('img/favosDemel.png') }}" alt="Colmeias" />
-    </a>
-    <a href="{{ route('apiarios.index') }}" class="dashboard-card">
-      <h2>APIÁRIOS</h2>
-      <img src="{{ asset('img/apiarioPng.png') }}" alt="Apiários" />
-    </a>
-    <a href="{{ route('inspecao.index') }}" class="dashboard-card">
-      <h2>INSPEÇÕES</h2>
-      <img src="{{ asset('img/favosPng.png') }}" alt="Inspeções" />
-    </a>
-    <a href="{{ route('apicultor.index') }}" class="dashboard-card">
-      <h2>APICULTOR</h2>
-      <img src="{{ asset('img/apicultorPng.png') }}" alt="Apicultor" />
-    </a>
-  </div>
-
-  <!-- Fundo decorativo -->
-  <img class="hex-background" src="{{ asset('img/backgroundImg.png') }}" alt="Fundo Hexágonos" />
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+@endsection

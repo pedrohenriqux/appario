@@ -56,6 +56,9 @@ Route::middleware(['auth'])->group(function () {
         return 'Página de apicultores em construção.';
     })->name('apicultor.index');
 
+    Route::get('/apiarios', [\App\Http\Controllers\ApiarioController::class, 'index'])->name('apiarios.index');
+    Route::get('/apiarios/adicionar', [ApiarioController::class, 'create'])->name('apiarios.adicionar');
+
 });
 
 

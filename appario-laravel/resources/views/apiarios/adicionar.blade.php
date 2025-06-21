@@ -140,7 +140,7 @@
   </header>
 
   <div class="form-wrapper">
-    <form method="POST" action="{{ route('apiarios.inserir') }}">
+    <form method="POST" action="{{ route('apiarios.store') }}">
       @csrf
       <h1 class="text-center mb-4">Informe os dados do Apiário</h1>
 
@@ -193,7 +193,7 @@
 
       <!-- Logradouro -->
       <div class="mb-3">
-        <label for="logradouro" class="form-label">Logradouro</label>
+        <label for="logradouro" class="form-label">Logradouro(Sítio,Bairro,etc.)</label>
         <input type="text" class="form-control" id="logradouro" name="logradouro" required />
       </div>
       

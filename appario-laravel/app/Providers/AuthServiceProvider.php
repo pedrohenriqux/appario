@@ -12,12 +12,8 @@ class AuthServiceProvider extends ServiceProvider
         Apiario::class => ApiarioPolicy::class,
     ];
 
-
-    /**
-     * Bootstrap services.
-     */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
     }
 }

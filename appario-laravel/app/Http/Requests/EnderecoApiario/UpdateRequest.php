@@ -2,48 +2,23 @@
 
 namespace App\Http\Requests\EnderecoApiario;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
-
     public function authorize(): bool
     {
         return true;
     }
 
-   
     public function rules(): array
     {
         $ufs = [
-            'AC',
-            'AL',
-            'AP',
-            'AM',
-            'BA',
-            'CE',
-            'DF',
-            'ES',
-            'GO',
-            'MA',
-            'MT',
-            'MS',
-            'MG',
-            'PA',
-            'PB',
-            'PR',
-            'PE',
-            'PI',
-            'RJ',
-            'RN',
-            'RS',
-            'RO',
-            'RR',
-            'SC',
-            'SP',
-            'SE',
-            'TO'
+            'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES',
+            'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR',
+            'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC',
+            'SP', 'SE', 'TO'
         ];
 
         return [
@@ -54,7 +29,16 @@ class UpdateRequest extends FormRequest
             'cep' => 'sometimes|string|size:10',
             'cidade' => 'sometimes|string|max:50',
             'estado' => ['sometimes', 'string', 'size:2', Rule::in($ufs)],
-            'apiario_id' => 'sometimes|integer|exists:apiarios,id_apiario',
+            // apiario_id REMOVIDO
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'cep.size' => 'O CEP deve conter exatamente 10 caracteres.',
+            'estado.in' => 'Selecione um estado válido.',
+            'numero.max' => 'Número excede o tamanho máximo de :max caracteres.',
         ];
     }
 }

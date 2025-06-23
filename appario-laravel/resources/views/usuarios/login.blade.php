@@ -5,11 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Login - Projeto</title>
 
-        <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- CSS personalizado -->
-        <link href="nav.css" rel="stylesheet">
+        <link href="{{ asset('css/nav.css') }}" rel="stylesheet">
         </head>
 
         <style>
@@ -88,12 +86,21 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-custom">
             <div class="container-fluid">
-                <img src="{{ asset('img/AppArio logo.png') }}" alt="Logo Appário" width="60" height="60" class="d-inline-block align-text-top me-2">
+                <img src="{{ asset('img/appAriologo.png') }}" alt="Logo Appário" width="60" height="60" class="d-inline-block align-text-top me-2">
                 <span class="text-white fw-bold">Login</span>
             </div>
         </nav>
         <div class="login-container">
             <h2>Login</h2>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul style="margin-bottom: 0;">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <label for="email">Email:</label>

@@ -26,7 +26,7 @@ class ApiarioController extends Controller
                 ->with('error', 'Pessoa não encontrada para este usuário.');
         }
 
-            // Aqui carregamos endereço e contagem de colmeias
+        // Aqui carregamos endereço e contagem de colmeias
         $apiarios = Apiario::with('enderecos')
             ->where('pessoa_id', $pessoa->id_pessoa)
             ->get();

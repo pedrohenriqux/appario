@@ -30,4 +30,10 @@ class Apiario extends Model
     {
         return $this->hasOne(EnderecoApiario::class, 'apiario_id', 'id_apiario');
     }
+
+    // Um apiario pode ter várias colmeias
+    public function colmeias(): HasMany
+    {
+        return $this->hasMany(Colmeia::class, 'apiario_id', 'id_apiario');
+    }
 }

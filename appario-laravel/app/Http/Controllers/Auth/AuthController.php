@@ -22,7 +22,7 @@ class AuthController extends Controller
                 return redirect()->intended(route('dashboard'));
             }
             return back()->withErrors(['email' => 'Credenciais inválidas.'])->withInput(); 
-        } catch (\Throwable $th) {
+        } catch (\Throwable $e) {
             return back()->withErrors(['erro'  => 'Erro no login: ' . $e->getMessage()]);
             
         }        

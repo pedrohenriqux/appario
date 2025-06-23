@@ -8,57 +8,38 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
-Route::get('/login', function () {
-    return view('usuarios.login');
-})->name('login.form');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+// ROTAS DE LOGIN E USUÁRIOS (fora de auth)
+Route::group([], function () {
+    Route::get('/login', fn() => view('usuarios.login'))->name('login.form');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-// Tela para inserir o e-mail e solicitar o link
-Route::get('/esqueci-senha', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('usuarios.solicitarSenha');
+    // Redefinição de senha
+    Route::get('/esqueci-senha', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('usuarios.solicitarSenha');
+    Route::post('/esqueci-senha', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('usuarios.email');
+    Route::get('/redefinir-senha/{token}', [ResetPasswordController::class, 'showResetForm'])->name('usuarios.resetar');
+    Route::post('/redefinir-senha', [ResetPasswordController::class, 'reset'])->name('usuarios.atualizar');
 
-// Processa o envio do link por e-mail
-Route::post('/esqueci-senha', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('usuarios.email');
-
-// Tela para redefinir a senha com token
-Route::get('/redefinir-senha/{token}', [ResetPasswordController::class, 'showResetForm'])->name('usuarios.resetar');
-
-// Processa a redefinição de senha 
-Route::post('/redefinir-senha', [ResetPasswordController::class, 'reset'])->name('usuarios.atualizar');
-
-
-Route::get('/home', fn() => view('home'))->name('home');
-
-Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.listar');
-Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('usuarios.create');
-Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
-Route::get('/usuarios/{usuario}', [UsuarioController::class, 'show'])->name('usuarios.show');
-
+    // Usuários (listar, criar, mostrar)
+    Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.listar');
+    Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('usuarios.create');
+    Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
+    Route::get('/usuarios/{usuario}', [UsuarioController::class, 'show'])->name('usuarios.show');
+});
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
 
     Route::resource('pessoas', PessoaController::class);
     Route::get('/pessoas/{pessoa}/delete', [PessoaController::class, 'delete'])->name('pessoas.delete');
 
-    
-
-    Route::get('/colmeia', function () {
-        return 'Página de colmeias em construção.';
-    })->name('colmeia.index');
-
-    Route::get('/inspecao', function () {
-        return 'Página de inspeção em construção.';
-    })->name('inspecao.index');
-
-    Route::get('/apicultor', function () {
-        return 'Página de apicultores em construção.';
-    })->name('apicultor.index');
-
-    Route::get('/apiarios/adicionar', [ApiarioController::class, 'create'])->name('apiarios.adicionar');
+     Route::get('/apiarios/adicionar', [ApiarioController::class, 'create'])->name('apiarios.adicionar');
     Route::resource('apiarios', ApiarioController::class);
 
+    Route::resource('colmeias', ColmeiaController::class);
+
+    Route::get('/inspecao', fn() => 'Página de inspeção em construção.')->name('inspecao.index');
+    Route::get('/apicultor', fn() => 'Página de apicultores em construção.')->name('apicultor.index');
+   
 });
 
 

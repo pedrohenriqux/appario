@@ -8,6 +8,10 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 
+Route::get('/', function () {
+    return view('homepage.homepage');
+});
+
 Route::get('/login', function () {
     return view('usuarios.login');
 })->name('login.form');

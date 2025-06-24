@@ -44,6 +44,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/inspecao', fn() => 'Página de inspeção em construção.')->name('inspecao.index');
     Route::get('/apicultor', fn() => 'Página de apicultores em construção.')->name('apicultor.index');
+
+    Route::get('/apiarios/{apiario}', [ApiarioController::class, 'show'])->name('apiarios.mostrar');
    
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

@@ -135,7 +135,7 @@
         <nav class="nav-menu">
         <a href="{{ url('/') }}">HOME</a>
         <a href="{{ route('apiarios.index') }}">APIÁRIO</a>
-        <a href="{{ route('colmeia.index') }}">COLMEIA</a>
+        <a href="{{ route('colmeias.index') }}">COLMEIA</a>
         <a href="{{ route('inspecao.index') }}">INSPEÇÃO</a>
         </nav>
     </header>

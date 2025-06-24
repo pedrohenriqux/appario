@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany; // ✅ Adicionado
 
 class Apiario extends Model
 {   
     protected $primaryKey = 'id_apiario';
     public $incrementing = true;
     protected $keyType = 'int';
-
 
     protected $fillable = [
         'area',
@@ -25,13 +25,13 @@ class Apiario extends Model
         return $this->belongsTo(Pessoa::class, 'pessoa_id', 'id_pessoa');
     }
 
-    // Relação com endereços (1:N)
-    public function enderecos()
+    // Relação com endereço (1:1)
+    public function endereco()
     {
         return $this->hasOne(EnderecoApiario::class, 'apiario_id', 'id_apiario');
     }
 
-    // Um apiario pode ter várias colmeias
+    // Um apiário pode ter várias colmeias (1:N)
     public function colmeias(): HasMany
     {
         return $this->hasMany(Colmeia::class, 'apiario_id', 'id_apiario');

@@ -36,8 +36,7 @@ class ApiarioPolicy
     public function update(Usuario $usuario, Apiario $apiario): bool
     {
         return $usuario->pessoa &&
-           $usuario->pessoa->tipo === 'RESPONSAVEL' &&
-           $apiario->pessoa_id === $usuario->pessoa->id_pessoa; 
+           $apiario->pessoa_id === $usuario->pessoa->id_pessoa;
     }
 
     /**
@@ -46,7 +45,6 @@ class ApiarioPolicy
     public function delete(Usuario $usuario, Apiario $apiario): bool
     {
         return $usuario->pessoa &&
-           $usuario->pessoa->tipo === 'RESPONSAVEL' &&
            $apiario->pessoa_id === $usuario->pessoa->id_pessoa; 
     }
 

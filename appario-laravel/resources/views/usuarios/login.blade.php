@@ -52,13 +52,17 @@
             }
 
             /* Fundo da página */
-            body {
-                background-color: #f2f2f2;
-                height: 100vh;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+           body {
+            background-color: #f2f2f2;
+            background-image: url('background.jpg');
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-size: cover; /* Ensures the image covers the entire element */
+            background-position: center; 
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
             /* Container do formulário */
             .login-container {
@@ -120,7 +124,7 @@
     <header class="header-custom">
         <div class="container-fluid header-content">
             <div class="header-left">
-                <img src="logo.jpg" alt="Logo Appário" width="50" height="50">
+                <img src="{{ asset('img/appAriologo.png') }}" alt="Logo Appário" width="50" height="50">
             </div>
             <span class="header-title">Login</span>
         </div>

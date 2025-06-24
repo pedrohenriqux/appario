@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PessoaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ApiarioController;
+use App\Http\Controllers\ColmeiaController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
@@ -44,4 +45,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/inspecao', fn() => 'Página de inspeção em construção.')->name('inspecao.index');
     Route::get('/apicultor', fn() => 'Página de apicultores em construção.')->name('apicultor.index');
    
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

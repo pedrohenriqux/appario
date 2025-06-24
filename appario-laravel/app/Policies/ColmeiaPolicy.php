@@ -7,28 +7,28 @@ use App\Models\Usuario;
 
 class ColmeiaPolicy
 {
-    public function viewAny(User $user): bool
+    public function viewAny(Usuario $usuario): bool
     {
-        return $user->pessoa !== null;
+        return $usuario->pessoa !== null;
     }
 
-    public function view(User $user, Colmeia $colmeia): bool
+    public function view(Usuario $usuario, Colmeia $colmeia): bool
     {
-        return $user->pessoa && $colmeia->apiario->pessoa_id === $user->pessoa->id_pessoa;
+        return $usuario>pessoa && $colmeia->apiario->pessoa_id === $usuario->pessoa->id_pessoa;
     }
 
-    public function create(User $user): bool
+    public function create(Usuario $usuario): bool
     {
-        return $user->pessoa !== null;
+        return $usuario->pessoa !== null;
     }
 
-    public function update(User $user, Colmeia $colmeia): bool
+    public function update(Usuario $usuario, Colmeia $colmeia): bool
     {
-        return $user->pessoa && $colmeia->apiario->pessoa_id === $user->pessoa->id_pessoa;
+        return $usuario->pessoa && $colmeia->apiario->pessoa_id === $usuario->pessoa->id_pessoa;
     }
 
-    public function delete(User $user, Colmeia $colmeia): bool
+    public function delete(Usuario $usuario, Colmeia $colmeia): bool
     {
-        return $user->pessoa && $colmeia->apiario->pessoa_id === $user->pessoa->id_pessoa;
+        return $usuario->pessoa && $colmeia->apiario->pessoa_id === $usuario->pessoa->id_pessoa;
     }
 }

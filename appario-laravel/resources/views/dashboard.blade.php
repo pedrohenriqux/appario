@@ -4,7 +4,7 @@
 
 @section('content')
   <div class="dashboard-container">
-    <a href="{{ route('colmeia.index') }}" class="dashboard-card">
+    <a href="{{ route('colmeias.index') }}" class="dashboard-card">
       <h2>COLMEIAS</h2>
       <img src="{{ asset('img/favosDemel.png') }}" alt="Colmeias" />
     </a>

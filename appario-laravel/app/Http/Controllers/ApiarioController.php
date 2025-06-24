@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Apiario\StoreRequest;
 use App\Http\Requests\Apiario\UpdateRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ApiarioController extends Controller
 {
@@ -27,7 +28,8 @@ class ApiarioController extends Controller
         }
 
         // Aqui carregamos endereço e contagem de colmeias
-        $apiarios = Apiario::with('endereco')
+        $apiarios = Apiario::with('enderecos')
+            ->withCount('colmeias') 
             ->where('pessoa_id', $pessoa->id_pessoa)
             ->get();
 
@@ -186,4 +188,17 @@ class ApiarioController extends Controller
         return redirect()->route('apiarios.index')
             ->with('success', 'Apiário removido com sucesso.');
     }
+
+    public function gerarRelatorioPDF()
+    {
+        $usuario = auth()->user();
+        $pessoa = $usuario->pessoa;
+
+        // Apiários da pessoa vinculada
+        $apiarios = $pessoa->apiarios()->with('colmeias', 'enderecos')->get();
+
+        $pdf = Pdf::loadView('relatorios.apiarios', compact('apiarios', 'pessoa'));
+        return $pdf->download('relatorio-apiarios.pdf');
+    }
+
 }

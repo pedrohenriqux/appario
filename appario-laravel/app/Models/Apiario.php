@@ -26,7 +26,7 @@ class Apiario extends Model
     }
 
     // Relação com endereço (1:1)
-    public function endereco()
+    public function enderecos()
     {
         return $this->hasOne(EnderecoApiario::class, 'apiario_id', 'id_apiario');
     }

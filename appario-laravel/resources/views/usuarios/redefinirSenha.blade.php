@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <style>
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Senha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon-32x32.png') }}" type="image/x-icon" />
+
+
+    <style>
           body {
             background-color: #f2f2f2;
             background-image: url('{{ asset('img/backgroundImg.png') }}');
@@ -13,11 +20,7 @@
             justify-content: center;
         }
 
-  </style>
-<head>
-    <meta charset="UTF-8">
-    <title>Nova Senha</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    </style>
 </head>
 <body>
     <div class="p-4 bg-white rounded shadow" style="width: 100%; max-width: 400px;">

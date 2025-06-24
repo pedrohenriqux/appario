@@ -7,10 +7,43 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <link href="{{ asset('css/nav.css') }}" rel="stylesheet">
+       
         </head>
 
         <style>
+            header.header-custom {
+                background-color: #f5c802;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                position: fixed;
+                top: 0;
+                z-index: 1000;
+                padding: 10px 20px;
+            }
+
+            .header-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .header-left {
+                display: flex;
+                align-items: center;
+            }
+
+            .header-left img {
+                margin-right: 10px;
+            }
+
+            .header-title {
+                color: #ffffff;
+                font-size: 30px;
+                font-weight: bold;
+                position: fixed;
+                left: 47%;
+
+            }
             * {
                 margin: 0;
                 padding: 0;
@@ -84,12 +117,14 @@
             }
         </style>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-custom">
-            <div class="container-fluid">
-                <img src="{{ asset('img/appAriologo.png') }}" alt="Logo Appário" width="60" height="60" class="d-inline-block align-text-top me-2">
-                <span class="text-white fw-bold">Login</span>
+    <header class="header-custom">
+        <div class="container-fluid header-content">
+            <div class="header-left">
+                <img src="logo.jpg" alt="Logo Appário" width="50" height="50">
             </div>
-        </nav>
+            <span class="header-title">Login</span>
+        </div>
+    </header>
         <div class="login-container">
             <h2>Login</h2>
             @if ($errors->any())

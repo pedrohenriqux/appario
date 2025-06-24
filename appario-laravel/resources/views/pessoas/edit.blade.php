@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+{{-- resources/views/pessoas/edit.blade.php --}}
+@extends('layouts.app')
+
+@section('title', 'Editar Pessoa')
+
+@section('content')
+    <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
@@ -171,3 +177,4 @@
   </div>
 </body>
 </html>
+@endsection

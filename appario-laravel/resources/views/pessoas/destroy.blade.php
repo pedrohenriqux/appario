@@ -1,9 +1,4 @@
-{{-- resources/views/pessoas/destroy.blade.php --}}
-@extends('layouts.app')
 
-@section('title', 'Confirmar Exclusão')
-
-@section('content')
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

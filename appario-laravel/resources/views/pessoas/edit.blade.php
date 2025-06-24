@@ -1,13 +1,8 @@
+@extends('layouts.app')
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Editar Pessoa</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
- 
+@section('content')
+  <div class="container">
+    <h1 class="mb-4">Edite suas informações</h1>
 
   <style>
     body {
@@ -124,9 +119,6 @@
     <form action="{{ route('pessoas.update', $pessoa->id_pessoa) }}" method="POST" novalidate>
       @csrf
       @method('PUT')
-
-      <h2 class="text-center mb-4">Editar Pessoa</h2>
-
       <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
         <input type="text" class="form-control @error('nome') is-invalid @enderror" id="nome" name="nome" value="{{ old('nome', $pessoa->nome) }}" maxlength="50" required />

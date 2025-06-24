@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <style>
+  
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Senha</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ asset('favicon-32x32.png') }}" type="image/x-icon" />
+
+     <style>
           body {
             background-color: #f2f2f2;
             background-image: url('{{ asset('img/backgroundImg.png') }}');
@@ -13,11 +20,7 @@
             justify-content: center;
         }
 
-  </style>
-<head>
-    <meta charset="UTF-8">
-    <title>Nova Senha</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  </style>   
 </head>
     <div class="bg-white p-4 rounded shadow" style="max-width:400px; width:100%;">
         <h3 class="text-center mb-4">Recuperar Senha</h3>

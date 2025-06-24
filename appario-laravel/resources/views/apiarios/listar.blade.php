@@ -107,6 +107,10 @@
   </style>
 
   <div class="page-title">Apiários já adicionados</div>
+        <a href="{{ route('apiarios.relatorio') }}" target="_blank" class="btn btn-warning"
+            style="position: fixed; bottom: 2rem; right: 6rem; z-index: 10; padding: 12px 16px; border-radius: 8px; font-weight: 600;">
+                📄 Gerar Relatório
+        </a>
 
   @if($apiarios->count() > 0)
     @foreach($apiarios as $apiario)
@@ -116,8 +120,8 @@
           <div class="apiario-local">{{ $apiario->nome }}</div>
         </div>
         <div class="apiario-tipo">
-          {{ $apiario->endereco->cidade ?? 'Sem cidade' }}<br>
-          Colmeias: 0
+          {{ $apiario->enderecos->cidade ?? 'Sem cidade' }}<br>
+           Colmeias: {{ $apiario->colmeias_count }}
         </div>
 
         {{-- Botões de ação --}}

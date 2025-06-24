@@ -35,10 +35,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', fn() => view('dashboard'))->name('dashboard');
 
     Route::resource('pessoas', PessoaController::class);
-    Route::get('/pessoas/{pessoa}/delete', [PessoaController::class, 'delete'])->name('pessoas.delete');
+    Route::get('/pessoas/delete', [PessoaController::class, 'delete'])->name('pessoas.delete');
 
-     Route::get('/apiarios/adicionar', [ApiarioController::class, 'create'])->name('apiarios.adicionar');
+    Route::get('/apiarios/adicionar', [ApiarioController::class, 'create'])->name('apiarios.adicionar');
     Route::resource('apiarios', ApiarioController::class);
+    Route::get('/relatorio-apiarios', [ApiarioController::class, 'gerarRelatorioPDF'])->name('apiarios.relatorio');
+
 
     Route::resource('colmeias', ColmeiaController::class);
 

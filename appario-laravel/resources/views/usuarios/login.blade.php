@@ -6,6 +6,7 @@
         <title>Login - Projeto</title>
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="icon" href="{{ asset('favicon-32x32.png') }}" type="image/x-icon" />
 
        
         </head>

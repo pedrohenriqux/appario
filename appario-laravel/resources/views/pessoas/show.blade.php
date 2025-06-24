@@ -5,11 +5,9 @@
 
 @section('content')
   <div class="container">
-    <h1 class="mb-4">Perfil de {{ $pessoa->nome }} {{ $pessoa->sobrenome }}</h1>
+    <h1 class="mb-4">Perfil de<br> {{ $pessoa->nome }} {{ $pessoa->sobrenome }}</h1>
 
     <dl class="row">
-      <dt class="col-sm-3">ID</dt>
-      <dd class="col-sm-9">{{ $pessoa->id_pessoa }}</dd>
 
       <dt class="col-sm-3">Nome</dt>
       <dd class="col-sm-9">{{ $pessoa->nome }}</dd>

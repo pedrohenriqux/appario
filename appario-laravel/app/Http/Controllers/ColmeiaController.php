@@ -24,7 +24,7 @@ class ColmeiaController extends Controller
 
         $pessoa = $usuario->pessoa;
         if (!$pessoa) {
-            return redirect()->route('colmeias.listar')
+            return redirect()->route('colmeias.index')
                 ->with('error', 'Pessoa não encontrada para este usuário.');
         }
 
@@ -35,7 +35,7 @@ class ColmeiaController extends Controller
             })
             ->get();
 
-        return view('colmeias.listar', compact('colmeias'));
+        return view('colmeias.index', compact('colmeias'));
     }
 
     /**
@@ -47,13 +47,13 @@ class ColmeiaController extends Controller
         $pessoa = $usuario->pessoa;
 
         if (!$pessoa) {
-            return redirect()->route('colmeias.listar')
+            return redirect()->route('colmeias.index')
                 ->with('error', 'Pessoa não encontrada para este usuário.');
         }
 
         $apiarios = Apiario::where('pessoa_id', $pessoa->id_pessoa)->get();
 
-        return view('colmeias.adicionar', compact('apiarios'));
+        return view('colmeias.create', compact('apiarios'));
     }
 
     /**
@@ -65,7 +65,7 @@ class ColmeiaController extends Controller
         $pessoa = $usuario->pessoa;
 
         if (!$pessoa) {
-            return redirect()->route('colmeias.listar')
+            return redirect()->route('colmeias.index')
                 ->with('error', 'Pessoa não encontrada para este usuário.');
         }
 
@@ -77,7 +77,7 @@ class ColmeiaController extends Controller
             ->first();
 
         if (!$apiario) {
-            return redirect()->route('colmeias.listar')
+            return redirect()->route('colmeias.index')
                 ->with('error', 'Apiário inválido ou não pertence ao usuário.');
         }
 
@@ -95,7 +95,7 @@ class ColmeiaController extends Controller
 
             DB::commit();
 
-            return redirect()->route('colmeias.listar')
+            return redirect()->route('colmeias.index')
                 ->with('success', 'Colmeia criada com sucesso!');
 
         } catch (\Exception $e) {
@@ -150,7 +150,7 @@ class ColmeiaController extends Controller
             ->first();
 
         if (!$apiario) {
-            return redirect()->route('colmeias.listar')
+            return redirect()->route('colmeias.index')
                 ->with('error', 'Apiário inválido ou não pertence ao usuário.');
         }
 
@@ -166,7 +166,7 @@ class ColmeiaController extends Controller
 
             DB::commit();
 
-            return redirect()->route('colmeias.listar')
+            return redirect()->route('colmeias.index')
                 ->with('success', 'Colmeia atualizada com sucesso!');
 
         } catch (\Exception $e) {
@@ -187,7 +187,7 @@ class ColmeiaController extends Controller
 
         $colmeia->delete();
 
-        return redirect()->route('colmeias.listar')
+        return redirect()->route('colmeias.index')
             ->with('success', 'Colmeia removida com sucesso.');
     }
 }

@@ -12,11 +12,11 @@
       <h2>APIÁRIOS</h2>
       <img src="{{ asset('img/apiarioPng.png') }}" alt="Apiários" />
     </a>
-    <a href="{{ route('inspecao.index') }}" class="dashboard-card">
+    <a href="{{ route('inspecao.construcao') }}" class="dashboard-card">
       <h2>INSPEÇÕES</h2>
       <img src="{{ asset('img/favosPng.png') }}" alt="Inspeções" />
     </a>
-    <a href="{{ route('apicultor.index') }}" class="dashboard-card">
+    <a href="{{ route('apicultor.construcao') }}" class="dashboard-card">
       <h2>APICULTOR</h2>
       <img src="{{ asset('img/apicultorPng.png') }}" alt="Apicultor" />
     </a>

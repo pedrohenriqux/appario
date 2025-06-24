@@ -137,7 +137,7 @@
       <a href="{{ route('dashboard') }}">INÍCIO</a>
       <a href="{{ route('apiarios.index') }}">APIÁRIO</a>
       <a href="{{ route('colmeias.index') }}">COLMEIA</a>
-      <a href="{{ route('inspecao.index') }}">INSPEÇÃO</a>
+      <a href="{{ route('inspecao.construcao') }}">INSPEÇÃO</a>
     </nav>
 
     {{-- Ícone do usuário (aparece só em rotas específicas) --}}

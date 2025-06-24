@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="icon" href="{{ asset('favicon-32x32.png') }}" type="image/x-icon" />
 
   <!-- CSS personalizado -->
   <link href="nav.css" rel="stylesheet">
@@ -28,19 +29,21 @@
         font-weight: bold;
         flex-grow: 1;
     }
+
     body {
-        background-color: #f2f2f2;
-        background-image: url('background.jpg');
-        background-repeat: no-repeat; /* Prevents the image from repeating */
-        background-size: cover; /* Ensures the image covers the entire element */
+        background-color:rgb(242, 242, 242);
+        background-image: url('{{ asset("img/backgroudimg.png") }}');
+        background-repeat: no-repeat; 
+        background-size: cover; /
         background-position: center; 
         height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
-     }
+    }
+
     form {
-        background-color: #ffffff;
+        background-color:rgb(255, 255, 255);
         padding: 25px;
         border-radius: 10px;
         max-width: 400px;
@@ -55,7 +58,7 @@
         font-weight: bold;
     }
 
-    input[type="text"],
+    input,
     select {
         width: 100%;
         padding: 10px;
@@ -86,7 +89,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container-fluid">
-            <img src="logo.jpg" alt="Logo" width="60" height="60" class="d-inline-block align-text-top me-2">
+            <img src="{{ asset('img/appAriologo.png') }}" alt="Logo Appário" width="60" height="60" class="d-inline-block align-text-top me-2">
             <h1 class="navbar-title m-0">CADASTRO</h1>
         </div>
     </nav>

@@ -11,7 +11,8 @@ class ApiarioPolicy
    
     public function viewAny(Usuario $usuario): bool
     {
-        return false;
+        // Permitir visualizar lista apenas se o usuário tiver uma pessoa vinculada
+        return $usuario->pessoa !== null;
     }
 
     /**
@@ -23,24 +24,19 @@ class ApiarioPolicy
            $apiario->pessoa_id === $usuario->pessoa->id_pessoa;
     }
 
-    public function create(Usuario $usuario, Apiario $apiario): Response
+    public function create(Usuario $usuario): Response
     {
-        if (
-        $usuario->pessoa &&
-        $usuario->pessoa->tipo === 'RESPONSAVEL' &&
-        $apiario->pessoa_id === $usuario->pessoa->id_pessoa
-        ) {
+        if ($usuario->pessoa) {
             return Response::allow();
         }
 
-        return Response::deny('Você não tem permissão para criar este apiário.');
+        return Response::deny('Usuário não está vinculado a uma pessoa.');
     }
 
     public function update(Usuario $usuario, Apiario $apiario): bool
     {
         return $usuario->pessoa &&
-           $usuario->pessoa->tipo === 'RESPONSAVEL' &&
-           $apiario->pessoa_id === $usuario->pessoa->id_pessoa; 
+           $apiario->pessoa_id === $usuario->pessoa->id_pessoa;
     }
 
     /**
@@ -49,7 +45,6 @@ class ApiarioPolicy
     public function delete(Usuario $usuario, Apiario $apiario): bool
     {
         return $usuario->pessoa &&
-           $usuario->pessoa->tipo === 'RESPONSAVEL' &&
            $apiario->pessoa_id === $usuario->pessoa->id_pessoa; 
     }
 

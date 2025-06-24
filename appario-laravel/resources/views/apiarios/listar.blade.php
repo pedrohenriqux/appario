@@ -20,6 +20,12 @@
       align-items: center;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       flex-wrap: wrap;
+      transition: background-color 0.2s ease;
+    }
+
+    .apiario-card:hover {
+      background-color: #e0e0e0;
+      cursor: pointer;
     }
 
     .apiario-info {
@@ -79,8 +85,9 @@
         gap: 0.5rem;
       }
 
-      .apiario-tipo {
+      .apiario-tipo, .apiario-actions {
         text-align: left;
+        width: 100%;
       }
 
       .add-button {
@@ -91,20 +98,37 @@
         font-size: 1.8rem;
       }
     }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+    }
   </style>
 
   <div class="page-title">Apiários já adicionados</div>
 
   @if($apiarios->count() > 0)
     @foreach($apiarios as $apiario)
-      <div class="apiario-card">
+      <div onclick="window.location='{{ route('apiarios.mostrar', $apiario->id_apiario) }}'" class="apiario-card">
         <div class="apiario-info">
-            <div class="apiario-nome">Apiário {{ $apiario->id_apiario }}</div>
-            <div class="apiario-local">{{ $apiario->nome }}</div>
+          <div class="apiario-nome">Apiário {{ $apiario->id_apiario }}</div>
+          <div class="apiario-local">{{ $apiario->nome }}</div>
         </div>
         <div class="apiario-tipo">
-            {{ $apiario->enderecos->cidade ?? 'Sem cidade' }}<br>
-            Colmeias: 0 {{-- futuro campo para quando existir colmeias --}}
+          {{ $apiario->endereco->cidade ?? 'Sem cidade' }}<br>
+          Colmeias: 0
+        </div>
+
+        {{-- Botões de ação --}}
+        <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;" onclick="event.stopPropagation();">
+          <a href="{{ route('apiarios.edit', $apiario->id_apiario) }}" class="btn btn-sm btn-primary">Editar</a>
+
+          <form action="{{ route('apiarios.destroy', $apiario->id_apiario) }}" method="POST" onsubmit="event.stopPropagation(); return confirm('Deseja realmente excluir este apiário?')">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+          </form>
         </div>
       </div>
     @endforeach

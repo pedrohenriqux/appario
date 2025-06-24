@@ -42,9 +42,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('colmeias', ColmeiaController::class);
 
-    Route::get('/inspecao', fn() => 'Página de inspeção em construção.')->name('inspecao.index');
-    Route::get('/apicultor', fn() => 'Página de apicultores em construção.')->name('apicultor.index');
+    // Route::get('/inspecao', fn() => 'Página de inspeção em construção.')->name('inspecao.index');
+    // Route::get('/apicultor', fn() => 'Página de apicultores em construção.')->name('apicultor.index');
    
+    Route::view('/inspecao', 'em-construcao.emConstrucao')->name('inspecao.construcao');
+    Route::view('/apicultor', 'em-construcao.emConstrucao')->name('apicultor.construcao');
+
+
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });

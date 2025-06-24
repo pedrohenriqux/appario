@@ -30,7 +30,7 @@
     }
     body {
         background-color: #f2f2f2;
-        background-image: url('background.jpg');
+        background-image: url('{{ asset('img/backgroundImg.png') }}');
         background-repeat: no-repeat; /* Prevents the image from repeating */
         background-size: cover; /* Ensures the image covers the entire element */
         background-position: center; 

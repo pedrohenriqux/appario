@@ -7,14 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Pessoa\StoreRequest;
 use App\Http\Requests\Pessoa\UpdateRequest;
 
-
 class PessoaController extends Controller
 {
-
     public function index()
     {
         $pessoas = Pessoa::all();
-        return view(('pessoas.listar'), compact('pessoas'));
+        return view('pessoas.listar', compact('pessoas'));
     }
 
     public function create()
@@ -42,19 +40,35 @@ class PessoaController extends Controller
         // Limpa a sessão após o uso
         session()->forget('usuario_id');
 
-        return redirect()->route('home')->with(
-            'success', 'Cadastro concluído com sucesso!'
-        );
+        return redirect()->route('home')->with('success', 'Cadastro concluído com sucesso!');
+    }
 
+    public function show(Pessoa $pessoa)
+    {
+        return view('pessoas.show', compact('pessoa'));
+    }
+
+    public function edit(Pessoa $pessoa)
+    {
+        return view('pessoas.edit', compact('pessoa'));
     }
 
     public function update(UpdateRequest $request, Pessoa $pessoa)
     {
         $pessoa->update($request->validated());
 
-        return response()->json([
-            'message' => 'Pessoa atualizada com sucesso!',
-            'data' => $pessoa
-        ]);
+        return redirect()->route('pessoas.show', $pessoa->id_pessoa)
+                         ->with('success', 'Pessoa atualizada com sucesso!');
+    }
+
+    public function delete(Pessoa $pessoa)
+    {
+        return view('pessoas.destroy', compact('pessoa'));
+    }
+
+    public function destroy(Pessoa $pessoa)
+    {
+        $pessoa->delete();
+        return redirect()->route('usuarios.create')->with('success', 'Pessoa excluída com sucesso!');
     }
 }

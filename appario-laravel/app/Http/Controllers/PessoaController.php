@@ -68,7 +68,13 @@ class PessoaController extends Controller
 
     public function destroy(Pessoa $pessoa)
     {
+        // Deleta o usuário relacionado
+        $pessoa->usuario->delete();
+
+        // Deleta a pessoa
         $pessoa->delete();
-        return redirect()->route('usuarios.create')->with('success', 'Pessoa excluída com sucesso!');
+
+        return redirect()->route('usuarios.create')->with('success', 'Pessoa e usuário excluídos com sucesso!');
     }
+
 }

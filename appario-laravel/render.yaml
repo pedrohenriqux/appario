@@ -1,12 +1,11 @@
 services:
   - type: web
     name: appario-laravel
-    env: php
-    buildCommand: "composer install --no-dev --optimize-autoloader"
-    startCommand: "php artisan migrate --force && php artisan serve --host 0.0.0.0 --port $PORT"
+    env: docker
+    dockerfilePath: Dockerfile
     envVars:
       - key: APP_KEY
-        value: <gerar depois>
+        value: <sua_key_aqui>
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
@@ -16,12 +15,12 @@ services:
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_HOST
-        value: dpg-d1d82cfdiees73ckhcgg-a
+        value: <host_do_banco>
       - key: DB_PORT
         value: 5432
       - key: DB_DATABASE
-        value: appario_db
+        value: <nome_do_banco>
       - key: DB_USERNAME
-        value: appario_user
+        value: <usuario_do_banco>
       - key: DB_PASSWORD
         value: <senha_do_banco>

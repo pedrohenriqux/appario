@@ -28,17 +28,16 @@ class UsuarioController extends Controller
         $dados = $request->validated();
 
         $usuario = Usuario::create([
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'email' => $dados['email'],
+            'password' => bcrypt($dados['password']),
             'tipo' => 'PESSOA'
         ]);
 
-         // Cria a pessoa associada
         $usuario->pessoa()->create([
             'nome' => $dados['nome'],
             'sobrenome' => $dados['sobrenome'],
             'cpf' => $dados['cpf'],
-            'tipo' => $request->tipo,
+            'tipo' => $dados['tipo'], // se "tipo" é da pessoa, pegue do $dados também
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Usuário e pessoa cadastrados com sucesso!');

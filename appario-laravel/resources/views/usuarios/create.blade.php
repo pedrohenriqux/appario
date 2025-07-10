@@ -108,27 +108,27 @@
         @endif
 
         <h3>Cadastro de Usuário</h3>
+        <a href="{{ route('login.form') }}">Já tenho conta</a>
         <div>
             <label for="Email">Seu Email</label>
-            <input type="email" name="email" required>
+            <input type="email" name="email" placeholder="Digite seu email" required>
         </div>
         <div>
             <label for="Password">Seu Senha</label>
-            <input type="password" name="password" required>
+            <input type="password" name="password" placeholder="Digite sua senha" required>
         </div>
         <div>
             <label for="password_confirmation">Confirme sua senha</label>
-            <input type="password" name="password_confirmation" required>
+            <input type="password" name="password_confirmation" placeholder="Confirme sua Senha" required>
         </div>
 
-        <h3>Cadastro de Pessoa</h3>
         <div>
             <label for="Nome">Seu Nome</label>
-            <input type="text" name="nome" />
+            <input type="text" name="nome" placeholder="Digite seu nome"/>
         </div>
         <div>
             <label for="Sobrenome">Seu Sobrenome</label>
-            <input type="text" name="sobrenome" />
+            <input type="text" name="sobrenome" placeholder="Digite seu sobrenome"/>
         </div>
         <div>
             <label for="CPF">Seu CPF</label>

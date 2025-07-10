@@ -132,6 +132,7 @@
     </header>
         <div class="login-container">
             <h2>Login</h2>
+            <a href="{{ route('usuarios.create') }}">Ainda não tenho conta</a>
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul style="margin-bottom: 0;">

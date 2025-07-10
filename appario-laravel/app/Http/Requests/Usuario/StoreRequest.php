@@ -32,4 +32,23 @@ class StoreRequest extends FormRequest
             'tipo' => ['required', Rule::in(['APICULTOR', 'RESPONSAVEL'])],
         ];
     }
+    
+    public function messages(): array
+    {
+        return [
+            // Mensagens genéricas
+            'required' => 'O campo :attribute é obrigatório.',
+            'email' => 'O campo :attribute deve ser um e-mail válido.',
+            'max' => 'O campo :attribute não pode ter mais que :max caracteres.',
+            'min' => 'O campo :attribute deve ter pelo menos :min caracteres.',
+            'confirmed' => 'A confirmação da senha não coincide.',
+            'unique' => 'Este :attribute já está em uso.',
+            'in' => 'O valor selecionado para :attribute é inválido.',
+            'size' => 'O campo :attribute deve ter exatamente :size caracteres.',
+
+            // Mensagens específicas por campo
+            'password.confirmed' => 'As senhas não coincidem.',
+            'cpf.size' => 'O CPF deve ter 11 dígitos.',
+        ];
+    }
 }

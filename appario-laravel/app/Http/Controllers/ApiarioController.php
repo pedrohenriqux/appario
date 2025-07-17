@@ -95,14 +95,14 @@ class ApiarioController extends Controller
     }
 
    public function show(Apiario $apiario)
-{
-    $this->authorize('view', $apiario);
+    {
+        $this->authorize('view', $apiario);
 
-    // Carregar endereço associado (evita N+1 e facilita na view)
-    $apiario->load('endereco');
+        // Carregar endereço associado (evita N+1 e facilita na view)
+        $apiario->load('endereco');
 
-    return view('apiarios.mostrar', compact('apiario'));
-}
+        return view('apiarios.mostrar', compact('apiario'));
+    }
 
     public function edit(Apiario $apiario)
     {
@@ -114,70 +114,68 @@ class ApiarioController extends Controller
     }
 
     public function update(Request $request, Apiario $apiario)
-{
-    $this->authorize('update', $apiario);
+    {
+        $this->authorize('update', $apiario);
 
-    // Validação dos dados recebidos do formulário
-    $request->validate([
-        'nome' => 'required|string|max:255',
-        'data_criacao' => 'required|date',
-        'area' => 'required|numeric|min:0',
-        'coordenadas' => 'nullable|string',
-        'estado' => 'required|string|max:2',
-        'cidade' => 'required|string|max:255',
-        'logradouro' => 'required|string|max:255',
-        'numero' => 'required|string|max:20',
-        'complemento' => 'nullable|string|max:255',
-        'bairro' => 'required|string|max:255',
-        'cep' => 'required|string|max:10',
-    ]);
-
-    DB::beginTransaction();
-
-    try {
-        // 🔄 Atualiza os dados principais do apiário
-        $apiario->update([
-            'nome' => $request->input('nome'),
-            'area' => $request->input('area'),
-            'coordenadas' => $request->input('coordenadas'),
-            'data_criacao' => $request->input('data_criacao'),
+        // Validação dos dados recebidos do formulário
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'data_criacao' => 'required|date',
+            'area' => 'required|numeric|min:0',
+            'coordenadas' => 'nullable|string',
+            'estado' => 'required|string|max:2',
+            'cidade' => 'required|string|max:255',
+            'logradouro' => 'required|string|max:255',
+            'numero' => 'required|string|max:20',
+            'complemento' => 'nullable|string|max:255',
+            'bairro' => 'required|string|max:255',
+            'cep' => 'required|string|max:10',
         ]);
 
-        // 📍 Atualiza ou cria o endereço vinculado ao apiário
-        $endereco = $apiario->endereco()->first();
+        DB::beginTransaction();
 
-        $enderecoData = $request->only([
-            'logradouro',
-            'numero',
-            'complemento',
-            'bairro',
-            'cep',
-            'cidade',
-            'estado',
-        ]);
-
-        if ($endereco) {
-            $endereco->update($enderecoData);
-        } else {
-            $apiario->endereco()->save(new \App\Models\EnderecoApiario($enderecoData));
-        }
-
-        DB::commit();
-
-        return redirect()
-            ->route('apiarios.index')
-            ->with('success', 'Apiário e endereço atualizados com sucesso!');
-    } catch (\Exception $e) {
-        DB::rollBack();
-
-        return redirect()
-            ->back()
-            ->withInput()
-            ->withErrors([
-                'error' => 'Erro ao atualizar o apiário: ' . $e->getMessage()
+        try {
+            $apiario->update([
+                'nome' => $request->input('nome'),
+                'area' => $request->input('area'),
+                'coordenadas' => $request->input('coordenadas'),
+                'data_criacao' => $request->input('data_criacao'),
             ]);
+
+            $endereco = $apiario->endereco()->first();
+
+            $enderecoData = $request->only([
+                'logradouro',
+                'numero',
+                'complemento',
+                'bairro',
+                'cep',
+                'cidade',
+                'estado',
+            ]);
+
+            if ($endereco) {
+                $endereco->update($enderecoData);
+            } else {
+                $apiario->endereco()->save(new \App\Models\EnderecoApiario($enderecoData));
+            }
+
+            DB::commit();
+
+            return redirect()
+                ->route('apiarios.index')
+                ->with('success', 'Apiário e endereço atualizados com sucesso!');
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors([
+                    'error' => 'Erro ao atualizar o apiário: ' . $e->getMessage()
+                ]);
+        }
     }
-}
 
 
     public function destroy(Apiario $apiario)

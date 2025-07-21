@@ -189,13 +189,21 @@ class ApiarioController extends Controller
 
     public function gerarRelatorioPDF()
     {
-        $usuario = auth()->user();
-        $pessoa = $usuario->pessoa;
+        $usuario = auth()->user(); // Pega o usuário logado.
+        $pessoa = $usuario->pessoa; // Acessa a relação pessoa definida no modelo do usuário.
 
         // Apiários da pessoa vinculada
         $apiarios = $pessoa->apiarios()->with('colmeias', 'enderecos')->get();
+        /* 
+        `with('colmeias', 'enderecos')` → Eager loading (carregamento antecipado) das relações `colmeias` e `enderecos` de cada apiário.
+        get()` → Executa a query e retorna os dados.
+        */
 
         $pdf = Pdf::loadView('relatorios.apiarios', compact('apiarios', 'pessoa'));
+        /*
+        $apiarios é uma coleção de vários apiários (ou seja, plural).
+        $pessoa é um objeto único representando uma pessoa (singular).
+        */
         return $pdf->download('relatorio-apiarios.pdf');
     }
 

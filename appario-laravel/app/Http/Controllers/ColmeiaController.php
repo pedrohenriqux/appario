@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Colmeia;
 use App\Models\Apiario;
+use App\Models\Pessoa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Colmeia\StoreRequest;
@@ -193,11 +194,23 @@ class ColmeiaController extends Controller
     public function gerarRelatorioPDF() 
     {
         $usuario = auth()->user(); // Vê se o usuário está logado   
-        $pessoa = $usuario->pessoa;
 
-        $colmeias = $pessoa->colmeias()->with('apiarios')->get();
+        $pessoa = Pessoa::where('id_pessoa', $usuario->pessoa->id_pessoa)
+            ->with(['apiarios.colmeias', 'apiarios.enderecos'])
+            ->first();
 
-        $pdf = Pdf::loadview('relatorios.colmeias', compact('colmeias, pessoa'));
+        if (!$pessoa || $pessoa->apiarios->isEmpty()) {
+            $colmeias = collect();
+            $pdf = Pdf::loadview('relatorios.colmeias', compact('colmeias', 'pessoa'));
+            return $pdf->download('relatorio-colmeias.pdf');
+        }
+
+        $colmeias = collect();
+        foreach ($pessoa->apiarios as $apiario) {
+            $colmeias = $colmeias->merge($apiario->colmeias);
+        }
+
+        $pdf = Pdf::loadview('relatorios.colmeias', compact('colmeias', 'pessoa'));
         return $pdf->download('relatorio-colmeias.pdf');
     }
 }

@@ -21,7 +21,8 @@ class EnderecoApiarioController extends Controller
 
     public function create()
     {
-        //
+        return view('apiarios.adicionar', compact('ufs'));
+
     }
 
     /**

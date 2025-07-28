@@ -43,7 +43,7 @@ class EnderecoApiarioController extends Controller
      */
     public function show(EnderecoApiario $enderecosApiarios)
     {
-        //
+        return view('apiarios.mostrar', compact('enderecosApiarios'));
     }
 
     /**
@@ -51,7 +51,8 @@ class EnderecoApiarioController extends Controller
      */
     public function edit(EnderecoApiario $enderecosApiarios)
     {
-        //
+        return view('apiarios.editar', compact('enderecosApiarios'));
+
     }
 
     /**
@@ -72,6 +73,9 @@ class EnderecoApiarioController extends Controller
      */
     public function destroy(EnderecoApiario $enderecosApiarios)
     {
-        //
+        $enderecosApiarios->apiario->delete();
+        return redirect()->route('apiarios.adicionar')->with(
+            'Sucesso, o endereço vinculado a esse apiario foi excluido.'
+        );
     }
 }

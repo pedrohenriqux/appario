@@ -58,7 +58,7 @@ class PessoaController extends Controller
         $pessoa->update($request->validated());
 
         return redirect()->route('pessoas.show', $pessoa->id_pessoa)
-                         ->with('success', 'Pessoa atualizada com sucesso!');
+            ->with('success', 'Pessoa atualizada com sucesso!');
     }
 
     public function delete(Pessoa $pessoa)

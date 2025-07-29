@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pessoa extends Model
 {
-
     use HasFactory;
 
     protected $primaryKey = 'id_pessoa'; // Chave primária customizada

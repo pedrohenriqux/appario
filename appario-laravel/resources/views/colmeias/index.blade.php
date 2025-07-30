@@ -94,6 +94,10 @@
   </style>
 
   <div class="page-title">Colmeias já cadastradas</div>
+        <a href="{{ route('colmeias.relatorio') }}" target="_blank" class="btn btn-warning"
+            style="position: fixed; bottom: 2rem; right: 6rem; z-index: 10; padding: 12px 16px; border-radius: 8px; font-weight: 600;">
+                📄 Gerar Relatório
+        </a>
 
   @if($colmeias->count() > 0)
     @foreach($colmeias as $colmeia)

@@ -41,14 +41,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('apiarios', ApiarioController::class);
     Route::get('/relatorio-apiarios', [ApiarioController::class, 'gerarRelatorioPDF'])->name('apiarios.relatorio');
 
-
     Route::resource('colmeias', ColmeiaController::class);
+    Route::get('/relatorio-colmeias', [ColmeiaController::class, 'gerarRelatorioPDF'])->name('colmeias.relatorio');
 
     Route::get('/apiarios/{apiario}', [ApiarioController::class, 'show'])->name('apiarios.mostrar');
    
     Route::view('/inspecao', 'em-construcao.emConstrucao')->name('inspecao.construcao');
     Route::view('/apicultor', 'em-construcao.emConstrucao')->name('apicultor.construcao');
-
 
     // Logout
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

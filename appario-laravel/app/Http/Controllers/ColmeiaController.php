@@ -4,19 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Colmeia;
 use App\Models\Apiario;
+use App\Models\Pessoa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\Colmeia\StoreRequest;
 use App\Http\Requests\Colmeia\UpdateRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ColmeiaController extends Controller
 {
     use AuthorizesRequests;
 
-    /**
-     * Lista todas as colmeias do apiario da pessoa do usuário logado
-     */
+    
     public function index()
     {
         $usuario = auth()->user();
@@ -189,5 +189,28 @@ class ColmeiaController extends Controller
 
         return redirect()->route('colmeias.index')
             ->with('success', 'Colmeia removida com sucesso.');
+    }
+
+    public function gerarRelatorioPDF() 
+    {
+        $usuario = auth()->user(); // Vê se o usuário está logado   
+
+        $pessoa = Pessoa::where('id_pessoa', $usuario->pessoa->id_pessoa)
+            ->with(['apiarios.colmeias', 'apiarios.enderecos'])
+            ->first();
+
+        if (!$pessoa || $pessoa->apiarios->isEmpty()) {
+            $colmeias = collect();
+            $pdf = Pdf::loadview('relatorios.colmeias', compact('colmeias', 'pessoa'));
+            return $pdf->download('relatorio-colmeias.pdf');
+        }
+
+        $colmeias = collect();
+        foreach ($pessoa->apiarios as $apiario) {
+            $colmeias = $colmeias->merge($apiario->colmeias);
+        }
+
+        $pdf = Pdf::loadview('relatorios.colmeias', compact('colmeias', 'pessoa'));
+        return $pdf->download('relatorio-colmeias.pdf');
     }
 }

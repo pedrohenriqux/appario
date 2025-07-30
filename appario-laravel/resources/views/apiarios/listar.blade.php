@@ -10,7 +10,8 @@
       font-weight: 500;
     }
 
-    .apiario-card {
+    .apiario-card {    Route::get('/relatorio-colmeias', [ColmeiaController::class, 'gerarRelatorioPDF'])->name('colmeias.relatorio');
+
       background-color: #f1f1f1;
       margin: 0.5rem 2rem;
       padding: 1rem 1.5rem;

@@ -18,7 +18,8 @@ class EnderecoPessoaController extends Controller
 
     public function create()
     {
-        
+        return view('pessoa.adicionar', compact('ufs'));
+
     }
 
     public function store(StoreRequest $request)
@@ -36,7 +37,8 @@ class EnderecoPessoaController extends Controller
      */
     public function show(EnderecoPessoa $enderecos_pessoas)
     {
-        //
+        return view('pessoas.listar', compact('enderecos_pessoas'));
+
     }
 
     /**
@@ -44,7 +46,7 @@ class EnderecoPessoaController extends Controller
      */
     public function edit(EnderecoPessoa $enderecos_pessoas)
     {
-        //
+        return vew('pessoa.editar'. compact('enderecos_pessoas'));
     }
 
     /**
@@ -62,6 +64,9 @@ class EnderecoPessoaController extends Controller
 
     public function destroy(EnderecoPessoa $enderecos_pessoas)
     {
-        //
+        $enderecos_pessoas->pessoa->delete();
+        return redirect()->route('pessoas.inserir')->with(
+            'Sucesso, o endereço vinculado a vocẽ foi excluido.'
+        );
     }
 }

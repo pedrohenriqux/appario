@@ -94,57 +94,64 @@
         </div>
     </nav>
 
-    <form method="POST" action="{{ route('usuarios.store') }}" class="w-100 px-3 px-sm-5">
-        @csrf
+        <form method="POST" action="{{ route('usuarios.store') }}" class="w-100 px-3 px-sm-5" style="max-width: 800px;">
+            @csrf
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <h3 class="mb-3 text-center text-uppercase">Cadastro de Usuário</h3>
+            <a href="{{ route('login.form') }}">Já tenho conta</a>
+
+            <div class="row">
+                <div class="col-md-6 mt-3">
+                    <label for="email">Seu Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="Digite seu email" required>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="nome">Seu Nome</label>
+                    <input type="text" name="nome" class="form-control" placeholder="Digite seu nome">
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <label for="password">Sua Senha</label>
+                    <input type="password" name="password" class="form-control" placeholder="Digite sua senha" required>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="sobrenome">Seu Sobrenome</label>
+                    <input type="text" name="sobrenome" class="form-control" placeholder="Digite seu sobrenome">
+                </div>
+
+                <div class="col-md-6 mt-3">
+                    <label for="password_confirmation">Confirme sua senha</label>
+                    <input type="password" name="password_confirmation" class="form-control" placeholder="Confirme sua senha" required>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="cpf">Seu CPF</label>
+                    <input type="text" name="cpf" maxlength="11" class="form-control">
+                </div>
+
+                <div class="col-12 mt-3">
+                    <label for="tipo">Função</label>
+                    <select name="tipo" class="form-select" required>
+                        <option value="">Selecione...</option>
+                        <option value="APICULTOR">APICULTOR</option>
+                        <option value="RESPONSAVEL">RESPONSAVEL</option>
+                    </select>
+                </div>
+
+                <div class="col-12 mt-4">
+                    <button type="submit" class="button w-100">Cadastrar</button>
+                </div>
             </div>
-        @endif
+        </form>
 
-        <h3>Cadastro de Usuário</h3>
-        <div>
-            <label for="Email">Seu Email</label>
-            <input type="email" name="email" required>
-        </div>
-        <div>
-            <label for="Password">Seu Senha</label>
-            <input type="password" name="password" required>
-        </div>
-        <div>
-            <label for="password_confirmation">Confirme sua senha</label>
-            <input type="password" name="password_confirmation" required>
-        </div>
-
-        <h3>Cadastro de Pessoa</h3>
-        <div>
-            <label for="Nome">Seu Nome</label>
-            <input type="text" name="nome" />
-        </div>
-        <div>
-            <label for="Sobrenome">Seu Sobrenome</label>
-            <input type="text" name="sobrenome" />
-        </div>
-        <div>
-            <label for="CPF">Seu CPF</label>
-            <input type="text" name="cpf" maxlength="11"/>
-        </div>
-        
-        <div>
-            <label for="Tipo">Função</label>
-            <select name="tipo" required>
-                <option value="">Selecione...</option>
-                <option value="APICULTOR">APICULTOR</option>
-                <option value="RESPONSAVEL">RESPONSAVEL</option>
-            </select>
-        </div>
-
-        <button type="submit" class="button">Cadastrar</button>
-    </form>
   </body>
 </html>

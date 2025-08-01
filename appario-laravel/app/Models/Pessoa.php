@@ -37,4 +37,9 @@ class Pessoa extends Model
     {
         return $this->hasMany(EnderecoPessoa::class, 'pessoa_id', 'id_pessoa');
     }
+
+    public function telefones()
+    {
+        return $this->hasMany(Telefone::class, 'pessoa_id', 'id_pessoa');  
+    }
 }

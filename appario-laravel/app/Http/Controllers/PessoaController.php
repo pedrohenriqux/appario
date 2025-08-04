@@ -45,6 +45,7 @@ class PessoaController extends Controller
 
     public function show(Pessoa $pessoa)
     {
+        $pessoa = load('enderecos', 'telefones');
         return view('pessoas.show', compact('pessoa'));
     }
 

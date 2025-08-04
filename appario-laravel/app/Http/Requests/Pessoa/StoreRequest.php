@@ -18,7 +18,10 @@ class StoreRequest extends FormRequest
             'nome' => 'required|string|max:50',
             'sobrenome' => 'required|string|max:50',
             'cpf' => 'required|string|size:11|unique:pessoas,cpf',
-            'tipo' => ['required', Rule::in(['APICULTOR', 'RESPONSAVEL'])],
+            'tipo' => [
+                'required',
+                Rule::in(['APICULTOR', 'RESPONSAVEL'])
+            ],
             'usuario_id' => [
                 'required',
                 'exists:usuarios,id_usuario'
